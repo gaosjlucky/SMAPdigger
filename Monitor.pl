@@ -904,8 +904,8 @@ close ASM;
 # Final
 ################################### 
 # {{
-system("cp -f $Bin/RRBS_Kit_Run.sh $outdir/RRBS_Kit_Run.sh");
-system("chmod +x $outdir/RRBS_Kit_Run.sh");
+system("cp -f $Bin/RRBS_Kit_Run.sh $outdir/SMAP_Run.sh");
+system("chmod +x $outdir/SMAP_Run.sh");
 system("chmod +x $outdir/RRBS_report.sh");
 
 print("#" x 80 . "\n");
@@ -913,7 +913,7 @@ print "Configuration process successfully finished. Please follow the steps belo
 print "Enter the output directory:\n";
 print "\t\[$outdir\]\n";
 print "Execute all the scripts in one step:\n";
-print "\t   RRBS_Kit_Run.sh\n";
+print "\t   SMAP_Run.sh\n";
 print "Execute the following scripts in order:\n";
 print "\t1. RRBS_prepare.pl\n";
 print "\t2. RRBS_dmr.pl\n";
