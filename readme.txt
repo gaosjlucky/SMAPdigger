@@ -28,7 +28,7 @@
 #########################################################
 # Step 4 (Configure program) 
 #########################################################
-1, modify configuration file "RRBS_Kit_Eval.configure" 
+1, modify configuration file "Eval.configure" 
 2, Execute script "perl ./Monitor.pl -c RRBS_Kit_Eval.configure -o <Output path>"
 
 #########################################################
@@ -36,7 +36,7 @@
 #########################################################
 1, cd <Output path> 
 # If you want to run all the scripts by one step (Recommanded)
-2, Execute script "./Run.sh"
+2, Execute script “./SMAP_Run.sh"
 # If you want to run each script one by one
 2, Execute script "perl RRBS_prepare.pl"
 3, Execute script "perl RRBS_asm.pl"
