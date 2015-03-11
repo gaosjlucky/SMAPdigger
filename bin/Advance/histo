@@ -1,0 +1,1000 @@
+   37  cd bin/
+   38  ll
+   39  vi filter_subregion.pl 
+   40  cd ../
+   41  ll
+   42  ll
+   43  ll
+   44  ll
+   45  ll
+   46  ll
+   47  ll
+   48  les cancer_normal_CG_filter.out
+   49  ll
+   50  cd bin/
+   51  ll
+   52  vi filter_subregion.pl 
+   53  ll
+   54  cd ../
+   55  ll
+   56  les cancer_normal_CG_filter.out
+   57  ll
+   58  wc -l cancer_normal_CG_filter.out
+   59  les cancer_normal_CG_filter.out
+   60  cd ../
+   61  ll
+   62  ll
+   63  cd huangy/
+   64  cd bin/
+   65  ll
+   66  vi filter_subregion.pl 
+   67  cd ../
+   68  ll
+   69  ll
+   70  ll
+   71  les cancer_normal_CG_filter.out
+   72  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/
+   73  ll
+   74  cd Methylation_cancer_vs_Methylation_normal/
+   75  cd GC
+   76  LL
+   77  ll
+   78  cd CG
+   79  ll
+   80  pwd
+   81  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/
+   82  ll
+   83  ll
+   84  cd gaoshengjie_RRBS/
+   85  ll
+   86  cd DMR/
+   87  ll
+   88  mkdir huangy
+   89  ll
+   90  ll
+   91  cd ../
+   92  ll
+   93  cd ../
+   94  ll
+   95  ll
+   96  ll
+   97  ll
+   98  cd huangy/
+   99  ll
+  100  ll
+  101  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_cancer_vs_Methylation_normal/CG.ext.filter cancer_normal_CG_filter.out
+  102  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_cancer_vs_Methylation_normal/CG.ext.filter cancer_normal_CG_filter.out
+  103  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_cancer_vs_Methylation_normal/CG.ext.filter cancer_normal_CG_filter.out
+  104  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_brain_vs_Methylation_normal/
+  105  les /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_brain_vs_Methylation_normal/CG.ext.filter
+  106  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/huangy/
+  107  ll
+  108  ll
+  109  les brain_normal_CG_filter.out
+  110  ll
+  111  les brain_CpGIsland.out
+  112  ll
+  113  les cancer_CpGIsland.out
+  114  ll
+  115  les brain_CpGIsland.out
+  116  les cancer_CpGIsland.out
+  117  les mvc_normal_CG_filter.out
+  118  ll
+  119  les brain_CpGIsland.out
+  120  grep hypo brain_CpGIsland.out|les
+  121  grep hypo brain_CpGIsland.out|les
+  122  grep hypo brain_CpGIsland.out|wc -l
+  123  grep hypo brain_CpGIsland.out|les
+  124  grep hypo brain_CpGIsland.out|wc -l
+  125  grep hyper brain_CpGIsland.out|wc -l
+  126  grep hypo mvc_normal_CG_filter.out|wc -l
+  127  grep hypo mvc_CpGIsland.out|wc -l
+  128  grep hyper mvc_CpGIsland.out|wc -l
+  129  grep hypo cancer_CpGIsland.out|wc -l
+  130  grep hyper cancer_CpGIsland.out|wc -l
+  131  ll
+  132  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/huangy/
+  133  ll
+  134  pwd
+  135  LL
+  136  ll
+  137  cd ../
+  138  ll
+  139  cd gaoshengjie_RRBS/
+  140  ll
+  141  cd DMR/
+  142  ll
+  143  les annotation.sh
+  144  ll
+  145  cd Methylation_brain_vs_Methylation_normal
+  146  ll
+  147  cd CGfilter
+  148  ll
+  149  pwd
+  150  cd ../
+  151  ll
+  152  ll
+  153  cd ../
+  154  ll
+  155  cd Annotation/
+  156  ll
+  157  cd Methylation_cancer_vs_Methylation_normal
+  158  ll
+  159  les CG.ext.filter.upstream2k.bed.annotation
+  160  les CG.ext.filter.CDS.bed.annotation
+  161  les CG.ext.filter.CpGIsland.bed.annotation
+  162  ll
+  163  ll
+  164  cd ../
+  165  ll
+  166  cd Methylation_cancer_vs_Methylation_normal
+  167  ll
+  168  les CG.ext.filter.upstream2k.bed.annotation
+  169  ll
+  170  cd ../
+  171  ll
+  172  cd Methylation_brain_vs_Methylation_normal
+  173  ll
+  174  pwd
+  175  cd ../
+  176  ll
+  177  cd Methylation_block_vs_Methylation_normal
+  178  ll
+  179  pwd
+  180  cd ../
+  181  ll
+  182  cd Methylation_brain_vs_Methylation_normal
+  183  ll
+  184  pwd
+  185  ll
+  186  cd ../
+  187  ll
+  188  cd Methylation_cancer_vs_Methylation_normal/
+  189  ll
+  190  pwd
+  191  ll
+  192  cd ../
+  193  ll
+  194  cd Methylation_block_vs_Methylation_normal
+  195  ll
+  196  pwd
+  197  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/huangy
+  198  cd ../
+  199  ll
+  200  ll
+  201  cd gaoshengjie_RRBS/
+  202  ll
+  203  cd DMR/
+  204  ll
+  205  cd Annotation/
+  206  ll
+  207  cd ../
+  208  ll
+  209  cd ../
+  210  cd Methylation_cancer_vs_Methylation_normal
+  211  cd DMR/
+  212  ll
+  213  cd Methylation_cancer_vs_Methylation_normal
+  214  ll
+  215  cd CGfilter
+  216  ll
+  217  pwd
+  218  les CG.ext.filter
+  219  ll
+  220  cd ../
+  221  ll
+  222  cd ../
+  223  ll
+  224  cd Methylation_block_vs_Methylation_normal
+  225  ll
+  226  cd CGfilter
+  227  ll
+  228  pwd
+  229  ll
+  230  cd ../
+  231  ll
+  232  cd ../
+  233  ll
+  234  cd ../
+  235  ll
+  236  CD ../
+  237  cd ../
+  238  ll
+  239  cd huangy/
+  240  ll
+  241  cd bin/
+  242  ll
+  243  vi filter_subregion.pl 
+  244  vi filter_subregion.pl 
+  245  cd ../
+  246  ll
+  247  les mvc_normal_CG_filter.out
+  248  ll
+  249  cd bin/
+  250  ll
+  251  les filter_subregion.pl
+  252  ll
+  253  cd ../
+  254  ll
+  255  ll
+  256  perl bin/count_annotation.pl brain_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation brain_CpGIsland.out
+  257  perl bin/count_annotation.pl brain_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation brain_CpGIsland.out
+  258  perl bin/count_annotation.pl cancer_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation cancer_CpGIsland.out
+  259  perl bin/count_annotation.pl mvc_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation mvc_CpGIsland.out
+  260  ll
+  261  perl bin/count_annotation.pl brain_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_normal/CG.ext.filter.upstream2k.bed.annotation brain_promoter.out
+  262  perl bin/count_annotation.pl brain_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_normal/CG.ext.filter.three-UTR.bed.annotation brain_three-UTR.out
+  263  perl bin/count_annotation.pl brain_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_normal/CG.ext.filter.five-UTR.bed.annotation brain_five-UTR.out
+  264  perl bin/count_annotation.pl brain_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_normal/CG.ext.filter.Intron.bed.annotation brain_Intron.out
+  265  perl bin/count_annotation.pl brain_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_normal/CG.ext.filter.CDS.bed.annotation brain_CDS.out
+  266  perl bin/count_annotation.pl brain_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_normal/CG.ext.filter.downstream2k.bed.annotation brain_downstream2k.out
+  267  ll
+  268  perl bin/count_annotation.pl cancer_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.CDS.bed.annotation cancer_CDS.out
+  269  perl bin/count_annotation.pl cancer_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.upstream2k.bed.annotation cancer_promoter.out
+  270  perl bin/count_annotation.pl cancer_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.downstream2k.bed.annotation cancer_downstream2k.out
+  271  perl bin/count_annotation.pl cancer_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.five-UTR.bed.annotation cancer_five-UTR.out
+  272  perl bin/count_annotation.pl cancer_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.three-UTR.bed.annotation cancer_three-UTR.out
+  273  perl bin/count_annotation.pl cancer_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.downstream2k.bed.annotation cancer_downstream2k.out
+  274  perl bin/count_annotation.pl cancer_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.Intron.bed.annotation cancer_Intron.out
+  275  perl bin/count_annotation.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_normal/CG.ext.filter.upstream2k.bed.annotation mvc_promoter.out
+  276  perl bin/count_annotation.pl mvc_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_normal/CG.ext.filter.upstream2k.bed.annotation mvc_promoter.out
+  277  perl bin/count_annotation.pl mvc_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_normal/CG.ext.filter.downstream2k.bed.annotation mvc_downstream2k.out
+  278  perl bin/count_annotation.pl mvc_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_normal/CG.ext.filter.five-UTR.bed.annotation mvc_five-UTR.out
+  279  perl bin/count_annotation.pl mvc_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_normal/CG.ext.filter.three-UTR.bed.annotation mvc_three-UTR.out
+  280  perl bin/count_annotation.pl mvc_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_normal/CG.ext.filter.Intron.bed.annotation mvc_Intron.out
+  281  perl bin/count_annotation.pl mvc_normal_CG_filter.out /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_normal/CG.ext.filter.CDS.bed.annotation mvc_CDS.out
+  282  ll
+  283  ll
+  284  grep hypo cancer_promoter.out|les
+  285  grep hypo cancer_promoter.out|wc -l
+  286  grep hyper cancer_promoter.out|wc -l
+  287  grep hyper mvc_promoter.out|wc -l
+  288  grep hypo mvc_promoter.out|wc -l
+  289  grep hypo brain_promoter.out|wc -l
+  290  grep hyper brain_promoter.out|wc -l
+  291  grep hyper brain_five-UTR.out|wc -l
+  292  grep hypo brain_five-UTR.out|wc -l
+  293  grep hyper mvc_five-UTR.out|wc -l
+  294  grep hypo mvc_five-UTR.out|wc -l
+  295  grep hyper mb_five-UTR.out|wc -l
+  296  grep hyper brain_five-UTR.out|wc -l
+  297  grep hyper caner_five-UTR.out|wc -l
+  298  grep hyper cancer_five-UTR.out|wc -l
+  299  grep hypo cancer_five-UTR.out|wc -l
+  300  grep hypo brain_five-UTR.out|wc -l
+  301  grep hyper cancer_five-UTR.out|wc -l
+  302  grep hypo cancer_five-UTR.out|wc -l
+  303  grep hypo cancer_CDS.out|wc -l
+  304  grep hypER cancer_CDS.out|wc -l
+  305  grep hyper cancer_CDS.out|wc -l
+  306  grep hypo mvc_CDS.out|wc -l
+  307  grep hyper mvc_CDS.out|wc -l
+  308  grep hyper brain_CDS.out|wc -l
+  309  grep hypo brain_CDS.out|wc -l
+  310  grep hyper brain_Intron.out|wc -l
+  311  grep hypo brain_Intron.out|wc -l
+  312  grep hypo mvc_Intron.out|wc -l
+  313  grep hyper mvc_Intron.out|wc -l
+  314  grep hyper cancer_Intron.out|wc -l
+  315  grep hypo cancer_Intron.out|wc -l
+  316  grep hypo cancer_downstream2k.out|wc -l
+  317  grep hyper cancer_downstream2k.out|wc -l
+  318  grep hyper mvc_downstream2k.out|wc -l
+  319  grep hypo mvc_downstream2k.out|wc -l
+  320  grep hyper brain_downstream2k.out|wc -l
+  321  grep hypo brain_downstream2k.out|wc -l
+  322  grep hypo brain_three-UTR.out|wc -l
+  323  grep hyper brain_three-UTR.out|wc -l
+  324  grep hypo mvc_three-UTR.out|wc -l
+  325  grep hyper mvc_three-UTR.out|wc -l
+  326  grep hypo cancer_three-UTR.out|wc -l
+  327  grep hyper cancer_three-UTR.out|wc -l
+  328  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/
+  329  ll
+  330  ll
+  331  cd ../../huangy 
+  332  ll
+  333  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_cancer_vs_Methylation_normal/CGfilter/CG.ext.filter cancer_normal_CG_filter.out
+  334  ll
+  335  les cancer_normal_CG_filter.out
+  336  les cancer_normal_CG_filter.out
+  337  ll
+  338  wc -l cancer_normal_CG_filter.out
+  339  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_brain_vs_Methylation_normal/CGfilter/CG.ext.filter brain_normal_CG_filter.out
+  340  ll
+  341  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_block_vs_Methylation_normal/CGfilter/CG.ext.filter mb_normal_CG_filter.out
+  342  ll
+  343  wc -l mb_normal_CG_filter.out
+  344  wc -l brain_normal_CG_filter.out
+  345  wc -l cancer_normal_CG_filter.out
+  346  ll
+  347  les brain_normal_CG_filter.out
+  348  ll
+  349  les brain_normal_CG_filter.out
+  350  ll
+  351  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_block_vs_Methylation_normal/CGfilter/CG.ext.filter mb_normal_CG_filter.out
+  352  ll
+  353  wc -l brain_normal_CG_filter.out
+  354  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_cancer_vs_Methylation_normal/CGfilter/CG.ext.filter cancer_normal_CG_filter.out
+  355  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_block_vs_Methylation_normal/CGfilter/CG.ext.filter mb_normal_CG_filter.out
+  356  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_brain_vs_Methylation_normal/CGfilter/CG.ext.filter brain_normal_CG_filter.out
+  357  ll
+  358  wc -l brain_normal_CG_filter.out
+  359  ll
+  360  mv mb_normal_CG_filter.out mvc_normal_CG_filter.out
+  361  ll
+  362  ll
+  363  les cancer_normal_CG_filter.out
+  364  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_brain_vs_Methylation_normal/CGfilter/CG.ext.filter brain_normal_CG_filter.out
+  365  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_block_vs_Methylation_normal/CGfilter/CG.ext.filter mvc_normal_CG_filter.out
+  366  perl bin/filter_subregion.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Methylation_cancer_vs_Methylation_normal/CGfilter/CG.ext.filter cancer_normal_CG_filter.out
+  367  ll
+  368  les mvc_normal_CG_filter.out
+  369  ll
+  370  wc -l brain_normal_CG_filter.out
+  371  wc -l cancer_normal_CG_filter.out
+  372  wc -l mvc_normal_CG_filter.out
+  373  wc -l mvc_normal_CG_filter.out
+  374  ll
+  375  les cancer_normal_CG_filter.out
+  376  ll
+  377  ll
+  378  les brain_normal_CG_filter.out
+  379  ll
+  380  les brain_normal_CG_filter.out
+  381  les brain_normal_CG_filter.out
+  382  les brain_normal_CG_filter.out
+  383  ll
+  384  wc -l mvc_normal_CG_filter.out
+  385  les cancer_normal_CG_filter.out
+  386  awk '$5>$6'|les
+  387  awk '$5>$6' cancer_normal_CG_filter.out|les
+  388  awk '$5>$6' cancer_normal_CG_filter.out|wc -l
+  389  awk '$5<$6' cancer_normal_CG_filter.out|wc -l
+  390  wc -l cancer_normal_CG_filter.out
+  391  awk '$5>$6' mvc_normal_CG_filter.out|les
+  392  awk '$5>$6' mvc_normal_CG_filter.out|wc -l
+  393  awk '$5<$6' mvc_normal_CG_filter.out|wc -l
+  394  awk '$5>$6' brain_normal_CG_filter.out|wc -l
+  395  awk '$5<$6' brain_normal_CG_filter.out|wc -l
+  396  ll
+  397  les brain_normal_CG_filter.out
+  398  les brain_normal_CG_filter.out
+  399  cd bin/
+  400  ll
+  401  ll
+  402  touch count_annotation.pl
+  403  ll
+  404  ll
+  405  vi count_annotation.pl 
+  406  vi count_annotation.pl 
+  407  ll
+  408  ll
+  409  les count_annotation.pl
+  410  ll
+  411  les count_annotation.pl
+  412  vi count_annotation.pl 
+  413  cd ../
+  414  ll
+  415  ll
+  416  ll
+  417  ll
+  418  ll
+  419  ll
+  420  ll
+  421  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/huangy/
+  422  ll
+  423  ll
+  424  ll
+  425  mkdir other_annotation
+  426  ll
+  427  mv brain_CDS.out other_annotation/
+  428  ll
+  429  mv brain_downstream2k.out other_annotation/
+  430  ll
+  431  mv brain_five-UTR.out other_annotation/
+  432  mv brain_Intron.out other_annotation/
+  433  ll
+  434  mv brain_three-UTR.out other_annotation/
+  435  ll
+  436  mv cancer_CDS.out other_annotation/
+  437  ll
+  438  mv cancer_downstream2k.out other_annotation/
+  439  ll
+  440  mv cancer_five-UTR.out other_annotation/
+  441  ll
+  442  ll
+  443  mv cancer_Intron.out other_annotation/
+  444  ll
+  445  mv cancer_three-UTR.out other_annotation/
+  446  ll
+  447  mv mvc_CDS.out other_annotation/
+  448  ll
+  449  mv mvc_downstream2k.out other_annotation/
+  450  ll
+  451  mv mvc_five-UTR.out other_annotation/
+  452  ll
+  453  mv mvc_Intron.out other_annotation/
+  454  ll
+  455  mv mvc_three-UTR.out other_annotation/
+  456  ll
+  457  les brain_CpGIsland.out
+  458  ll
+  459  les cancer_CpGIsland.out
+  460  les mvc_CpGIsland.out
+  461  cd bin/
+  462  ll
+  463  les filter_subregion.pl
+  464  ll
+  465  cd ../
+  466  ll
+  467  les brain_CpGIsland.out
+  468  rm brain_CpGIsland.out
+  469  rm brain_promoter.out
+  470  ll
+  471  rm cancer_CpGIsland.out
+  472  rm cancer_promoter.out
+  473  rm mvc_CpGIsland.out
+  474  ll
+  475  rm mvc_promoter.out
+  476  rm -fR other_annotation
+  477  ll
+  478  cd ../
+  479  ll
+  480  cd gaoshengjie_RRBS/
+  481  ll
+  482  cd DMR/
+  483  ll
+  484  cd Annotation/
+  485  ll
+  486  cd Methylation_cancer_vs_Methylation_normal
+  487  ll
+  488  les CG.ext.filter.CpGIsland.bed.annotation
+  489  les CG.ext.filter.CpGIsland.bed.annotation
+  490  ll
+  491  pwd
+  492  les CG.ext.filter.CpGIsland.bed.annotation
+  493  les CG.ext.filter.CpGIsland.bed.annotation
+  494  ll
+  495  cd ../
+  496  ll
+  497  cd Methylation_brain_vs_Methylation_normal
+  498  ll
+  499  pwd
+  500  cd ../
+  501  ll
+  502  cd Methylation_block_vs_Methylation_normal
+  503  ll
+  504  pwd
+  505  cd ../
+  506  ll
+  507  cd Methylation_cancer_vs_Methylation_normal/
+  508  ll
+  509  les CG.ext.filter.CpGIsland.bed.annotation 
+  510  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/huangy/
+  511  ll
+  512  ll
+  513  ll
+  514  cd bin/
+  515  ll
+  516  les count_annotation.pl
+  517  les count_annotation.pl
+  518  cd ../
+  519  ll
+  520  les cancer_CpGIsland.out
+  521  ll
+  522  ll
+  523  les brain_CpGIsland.out
+  524  ll
+  525  ll
+  526  ll
+  527  cd bin/
+  528  ll
+  529  les filter_subregion.pl
+  530  vi merge_each_catergory.pl 
+  531  vi merge_each_catergory.pl 
+  532  vi merge_each_catergory.pl 
+  533  vi merge_each_catergory.pl 
+  534  ll
+  535  cd ../
+  536  ll
+  537  les brain_CGI.out
+  538  les MVC_CGI.out
+  539  grep hyper cancer_CGI.out|les
+  540  grep hyper cancer_CGI.out|les
+  541  grep hyper cancer_CGI.out|cut -f2|les
+  542  grep hyper cancer_CGI.out|cut -f2|sort -u |les
+  543  grep hyper cancer_CGI.out|cut -f2|sort -u |wc -l
+  544  grep hypo cancer_CGI.out|cut -f2|sort -u |wc -l
+  545  grep hyper brain_CGI.out|cut -f2|sort -u |wc -l
+  546  grep hyper brain_CGI.out|LES
+  547  grep hyper brain_CGI.out|les
+  548  grep hypo brain_CGI.out|cut -f2|sort -u |wc -l
+  549  grep hypo MVC_CGI.out|cut -f2|sort -u |wc -l
+  550  grep hyper MVC_CGI.out|cut -f2|sort -u |wc -l
+  551  ll
+  552  greo hyper cancer_CGI.out|les
+  553  grep hyper cancer_CGI.out|les
+  554  grep hyper cancer_CGI.out|cut -f2|les
+  555  grep hyper cancer_CGI.out|cut -f2|sort -u |les
+  556  grep hyper cancer_CGI.out|cut -f2|sort -u |wc -l
+  557  grep hypo cancer_CGI.out|cut -f2|sort -u |wc -l
+  558  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/
+  559  ll
+  560  cd huangy/
+  561  ll
+  562  cd bin/
+  563  ll
+  564  les count_annotation.pl
+  565  touch overlap_between_tumors.pl
+  566  ll
+  567  vi overlap_between_tumors.pl 
+  568  ll
+  569  vi overlap_between_tumors.pl 
+  570  ll
+  571  touch merge_each_catergory.pl
+  572  ll
+  573  vi merge_each_catergory.pl 
+  574  ll
+  575  cd ../
+  576  ll
+  577  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation cancer_CGI.out
+  578  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation cancer_CGI.out
+  579  ll
+  580  les cancer_CGI.out
+  581  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation cancer_CGI.out
+  582  ll
+  583  les cancer_CGI.out
+  584  les cancer_CGI.out
+  585  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation cancer_CGI.out
+  586  ll
+  587  les cancer_CGI.out
+  588  wc -l cancer_CGI.out
+  589  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation brain_CGI.out
+  590  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation MVC_CGI.out
+  591  ll
+  592  wc -l MVC_CGI.out
+  593  wc -l brain_CGI.out
+  594  ll
+  595  les cancer_CGI.out
+  596  awk '$4>$5' cancer_CGI.out|les
+  597  awk '$4>$5' cancer_CGI.out|wc -l
+  598  awk '$4<$5' cancer_CGI.out|wc -l
+  599  wc -l cancer_CGI.out 
+  600  awk '$4=$5' cancer_CGI.out|wc -l
+  601  awk '$4=$5' cancer_CGI.out|LES
+  602  awk '$4=$5' cancer_CGI.out|les
+  603  awk '$4=$5' cancer_CGI.out|les
+  604  awk '$4=$5' cancer_CGI.out|wc -l
+  605  wc -l cancer_CGI.out 
+  606  les cancer_CGI.out
+  607  awk '$4==$5' cancer_CGI.out|les
+  608  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation MVC_CGI.out
+  609  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation brain_CGI.out
+  610  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.CpGIsland.bed.annotation cancer_CGI.out
+  611  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/
+  612  ll
+  613  ll
+  614  cd huangy/
+  615  ll
+  616  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_cancer_vs_Methylation_normal/CG.ext.filter.upstream2k.bed.annotation cancer_promoter.out
+  617  ll
+  618  les cancer_promoter.out
+  619  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_normal/CG.ext.filter.upstream2k.bed.annotation brain_promoter.out
+  620  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_normal/CG.ext.filter.upstream2k.bed.annotation mvc_promoter.out
+  621  ll
+  622  les mvc_promoter.out
+  623  les mvc_promoter.out
+  624  les brain_promoter.out
+  625  les brain_CGI.out
+  626  les brain_CGI.out
+  627  ll
+  628  ll
+  629  mv MVC_CGI.out mvc_CGI.out
+  630  ll
+  631  les mvc_CGI.out
+  632  ll
+  633  les brain_promoter.out
+  634  grep hyper cancer_promoter.out |les
+  635  grep hyper cancer_promoter.out |cut -f2|les
+  636  grep hyper cancer_promoter.out |cut -f2|sort -u|les
+  637  grep hyper cancer_promoter.out |cut -f2|sort -u|wc -l
+  638  grep hypo cancer_promoter.out |cut -f2|sort -u|wc -l
+  639  grep hyper mvc_promoter.out |cut -f2|sort -u|wc -l
+  640  grep hypo mvc_promoter.out |cut -f2|sort -u|wc -l
+  641  grep hyper brain_promoter.out |cut -f2|sort -u|wc -l
+  642  grep hypo brain_promoter.out |cut -f2|sort -u|wc -l
+  643  grep hypo cancer_normal_CG_filter.out |cut -f2|sort -u |wc -l
+  644  grep hypo cancer_CGI.out |cut -f2|sort -u |wc -l
+  645  ll
+  646  cd bin/
+  647  ll
+  648  vi overlap_between_tumors.pl 
+  649  ll
+  650  les overlap_between_tumors.pl
+  651  perl -c overlap_between_tumors.pl
+  652  cd ../
+  653  ll
+  654  perl bin/overlap_between_tumors.pl cancer_CGI.out mvc_CGI.out cancer_mvc_shared_CGI.out
+  655  ll
+  656  les cancer_mvc_shared_CGI.out
+  657  wc -l cancer_mvc_shared_CGI.out
+  658  perl bin/overlap_between_tumors.pl cancer_CGI.out brain_CGI.out cancer_brain_shared_CGI.out
+  659  ll
+  660  ll
+  661  ll
+  662  ll
+  663  vi cancer_brain_shared_CGI.out
+  664  vi cancer_brain_shared_CGI.out
+  665  vi cancer_mvc_shared_CGI.out 
+  666  ll
+  667  ll
+  668  les cancer_brain_shared_CGI.out
+  669  les brain_CGI.out
+  670  ll
+  671  perl bin/overlap_between_tumors.pl cancer_CGI.out mvc_normal_CG_filter.out cancer_mvc_shared_CGI.out
+  672  perl bin/overlap_between_tumors.pl cancer_CGI.out brain_CGI.out cancer_brain_shared_CGI.out
+  673  ll
+  674  perl bin/overlap_between_tumors.pl cancer_CGI.out mvc_CGI.out cancer_mvc_shared_CGI.out
+  675  ll
+  676  les cancer_mvc_shared_CGI.out
+  677  ll
+  678  les cancer_mvc_shared_CGI.out
+  679  ll
+  680  les mvc_CGI.out
+  681  perl bin/overlap_between_tumors.pl cancer_CGI.out brain_CGI.out cancer_brain_shared_CGI.out
+  682  perl bin/overlap_between_tumors.pl cancer_CGI.out mvc_CGI.out cancer_mvc_shared_CGI.out
+  683  ll
+  684  les cancer_brain_shared_CGI.out
+  685  les brain_CGI.out
+  686  ll
+  687  ll
+  688  ll
+  689  les cancer_brain_shared_CGI.out
+  690  les cancer_brain_shared_CGI.out
+  691  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/
+  692  ll
+  693  cd gaoshengjie_RRBS/DMR/Annotation/
+  694  ll
+  695  ll
+  696  cd Methylation_cancer_vs_Methylation_normal/
+  697  ll
+  698  ll
+  699  pwd
+  700  cd ../
+  701  ll
+  702  cd Methylation_brain_vs_Methylation_normal
+  703  ll
+  704  pwd
+  705  cd ../
+  706  ll
+  707  cd Methylation_block_vs_Methylation_normal
+  708  ll
+  709  ll
+  710  pwd
+  711  ll
+  712  cd ../
+  713  ll
+  714  cd ../
+  715  ll
+  716  cd ../
+  717  ll
+  718  cd ../
+  719  ll
+  720  cd huangy/
+  721  ll
+  722  cd bin/
+  723  ll
+  724  cd ../
+  725  ll
+  726  les cancer_CGI.out
+  727  ll
+  728  les mvc_CGI.out
+  729  ll
+  730  cd bin/
+  731  ll
+  732  vi overlap_between_tumors.pl 
+  733  ll
+  734  vi overlap_between_tumors.pl 
+  735  vi overlap_between_tumors.pl 
+  736  cd ../
+  737  ll
+  738  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/huangy/
+  739  ll
+  740  les cancer_brain_shared_CGI.out
+  741  les cancer_brain_shared_CGI.out
+  742  les cancer_brain_shared_CGI.out
+  743  ll
+  744  ll
+  745  les brain_CGI.out
+  746  les brain_promoter.out
+  747  perl bin/overlap_between_tumors.pl cancer_promoter.out brain_promoter.out cancer_brain_shared_promoter.out
+  748  perl bin/overlap_between_tumors.pl cancer_promoter.out mvc_promoter.out cancer_mvc_shared_promoter.out
+  749  ll
+  750  ll
+  751  les cancer_mvc_shared_promoter.out
+  752  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/huangy/
+  753  ll
+  754  grep hyper_in_P cancer_mvc_shared_CGI.out|les
+  755  grep hyper_in_P cancer_mvc_shared_CGI.out|grep consistent|les
+  756  grep hyper_in_P cancer_mvc_shared_CGI.out|grep -v inconsistent|les
+  757  grep hyper_in_P cancer_mvc_shared_CGI.out|grep -v inconsistent|cut -f2|les
+  758  grep hyper_in_P cancer_mvc_shared_CGI.out|grep -v inconsistent|cut -f2|sort -u|les
+  759  grep hyper_in_P cancer_mvc_shared_CGI.out|grep -v inconsistent|cut -f2|sort -u|wc -l
+  760  grep hyper_in_P cancer_mvc_shared_CGI.out|grep inconsistent|cut -f2|sort -u|wc -l
+  761  grep hyper_in_P cancer_brain_shared_CGI.out|grep -v inconsistent|cut -f2|sort -u|wc -l
+  762  grep hypo_in_P cancer_brain_shared_CGI.out|grep -v inconsistent|cut -f2|sort -u|wc -l
+  763  grep hypo_in_P cancer_brain_shared_CGI.out|grep inconsistent|cut -f2|sort -u|wc -l
+  764  grep hypo_in_P cancer_brain_shared_CGI.out|grep -v inconsistent|cut -f2|sort -u|wc -l
+  765  grep hypo_in_P cancer_mvc_shared_CGI.out|grep -v inconsistent|cut -f2|sort -u|wc -l
+  766  grep hyper_in_P cancer_mvc_shared_CGI.out |grep -v inconsistent|cut -f2|sort -u|wc -l
+  767  grep hyper_in_P cancer_mvc_shared_promoter.out |grep -v inconsistent|cut -f2|sort -u|wc -l
+  768  grep hyper_in_P cancer_brain_shared_promoter.out |grep -v inconsistent|cut -f2|sort -u|wc -l
+  769  grep hypo_in_P cancer_mvc_shared_promoter.out |grep -v inconsistent|cut -f2|sort -u|wc -l
+  770  grep hypo_in_P cancer_brain_shared_promoter.out |grep -v inconsistent|cut -f2|sort -u|wc -l
+  771  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/
+  772  ll
+  773  cd huangy/
+  774  ll
+  775  les brain_CGI.out
+  776  awk '$3==0' brain_CGI.out|les
+  777  awk '$4==0' brain_CGI.out|les
+  778  les cancer_brain_shared_CGI.out
+  779  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/
+  780  ll
+  781  cd huangy/
+  782  ll
+  783  ll
+  784  cd bin/
+  785  ll
+  786  les overlap_between_tumors.pl
+  787  ll
+  788  cd ../
+  789  ll
+  790  les cancer_brain_shared_CGI.out
+  791  ll
+  792  les cancer_mvc_shared_CGI.out
+  793  les brain_CGI.out
+  794  les brain_CGI.out
+  795  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/
+  796  ll
+  797  cd huangy/
+  798  ll
+  799  les brain_normal_CG_filter.out
+  800  ll
+  801  cd ../
+  802  ll
+  803  cd gaoshengjie_RRBS/
+  804  ll
+  805  cd DMR/
+  806  ll
+  807  cd Annotation/
+  808  ll
+  809  cd Methylation_cancer_vs_Methylation_normal/
+  810  ll
+  811  les CG.ext.filter.CpGIsland.bed.annotation
+  812  cd ../
+  813  ll
+  814  cd ../../
+  815  ll
+  816  cd ../
+  817  ll
+  818  cd huangy/
+  819  ll
+  820  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/
+  821  ll
+  822  cd huangy/
+  823  ll
+  824  les cancer_brain_shared_CGI.out
+  825  cd bin/
+  826  ll
+  827  touch output_methylation_level.pl
+  828  ll
+  829  vi output_methylation_level.pl
+  830  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/huangy/
+  831  ll
+  832  ll
+  833  les cancer_brain_shared_CGI.out
+  834  les cancer_brain_shared_CGI.out
+  835  les cancer_CGI.out
+  836  les cancer_brain_shared_CGI.out
+  837  les cancer_CGI.out
+  838  ll
+  839  perl bin/output_methylation_level.pl cancer_brain_shared_CGI.out cancer_CGI.out cancer_CGI_shared_by_brain.out
+  840  ll
+  841  les cancer_CGI_shared_by_brain.out
+  842  perl bin/output_methylation_level.pl cancer_brain_shared_CGI.out brain_CGI.out brain_CGI_shared_by_cancer.out
+  843  ll
+  844  les brain_CGI_shared_by_cancer.out
+  845  perl bin/output_methylation_level.pl cancer_mvc_shared_CGI.out cancer_CGI.out cancer_CGI_shared_by_mvc.out
+  846  perl bin/output_methylation_level.pl cancer_mvc_shared_CGI.out mvc_CGI.out mvc_CGI_shared_by_cancer.out
+  847  ll
+  848  les mvc_CGI_shared_by_cancer.out
+  849  awk '$4==0' brain_CGI_shared_by_cancer.out|les
+  850  les brain_CGI_shared_by_cancer.out
+  851  les brain_CGI_shared_by_cancer.out
+  852  grep hypo brain_CGI_shared_by_cancer.out|les
+  853  grep hyper brain_CGI_shared_by_cancer.out|les
+  854  ll
+  855  les bin/count_annotation.pl 
+  856  les brain_CGI.out 
+  857  les bin/filter_subregion.pl 
+  858  ll
+  859  les bin/merge_each_catergory.pl 
+  860  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_cancer/CG.ext.filter.CpGIsland.bed.annotation MVC_cancer_CGI.out
+  861  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_block_vs_Methylation_cancer/CG.ext.filter.upstream2k.bed.annotation MVC_cancer_promoter.out
+  862  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_cancer/CG.ext.filter.CpGIsland.bed.annotation brain_cancer_CGI.out
+  863  perl bin/merge_each_catergory.pl /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/Methylation_brain_vs_Methylation_cancer/CG.ext.filter.upstream2k.bed.annotation brain_cancer_promoter.out
+  864  ll
+  865  les brain_cancer_CGI.out
+  866  wc -l brain_cancer_CGI.out
+  867  ll
+  868  les brain_cancer_CGI.out
+  869  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/
+  870  ll
+  871  cd gaoshengjie_RRBS/DMR/Annotation/
+  872  ll
+  873  ll
+  874  cd Methylation_brain_vs_Methylation_cancer/
+  875  ll
+  876  les CG.ext.filter.CpGIsland.bed.annotation
+  877  les CG.ext.filter.CpGIsland.bed.annotation
+  878  cd ../
+  879  ll
+  880  cd Methylation_block_vs_Methylation_cancer/
+  881  ll
+  882  les CG.ext.filter.CpGIsland.bed.annotation
+  883  les CG.ext.filter.CpGIsland.bed.annotation
+  884  pwd
+  885  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/
+  886  cd huangy/bin/
+  887  ll
+  888  ll
+  889  vi output_methylation_level.pl 
+  890  les output_methylation_level.pl 
+  891  ll
+  892  cd /home/gaoshengjie/st_cancer/renal_one/Methylation/gaoshengjie_RRBS/DMR/Annotation/
+  893  ll
+  894  cd Methylation_cancer_vs_Methylation_normal/
+  895  ll
+  896  les CG.ext.filter.CpGIsland.bed.annotation
+  897  cd ../
+  898  ll
+  899  cd ../
+  900  ll
+  901  cd ../
+  902  ll
+  903  cd ../
+  904  ll
+  905  cd ../
+  906  ll
+  907  cd WTS/
+  908  ll
+  909  cd transcriptome/
+  910  ll
+  911  cd Upload/
+  912  ll
+  913  cd AdvancedAnalysis/
+  914  ll
+  915  cd GeneDiffExp/
+  916  ll
+  917  pwd
+  918  les Trans_normal-VS-Trans_cancer.GeneDiffExpFilter.xls
+  919  ll
+  920  ll
+  921  ll
+  922  ll
+  923  ll
+  924  ll
+  925  ll
+  926  ll
+  927  ll
+  928  ll
+  929  ll
+  930  cd st_cancer/
+  931  ll
+  932  cd renal_one/
+  933  ll
+  934  cd Methylation/
+  935  ll
+  936  cd  Annotation/
+  937  ll
+  938  ll ~/st_cancer/renal_one/Methylation 
+  939  ll
+  940  ll ~/st_cancer/renal_one/Methylation
+  941  ll /ifs4/BC_CANCER/02usr/yaoqiong/Project/gaoshengjie_RRBS/DMR/Annotation
+  942  ll /ifs4/BC_CANCER/02usr/yaoqiong/Project/gaoshengjie_RRBS/
+  943  ll /ifs4/BC_CANCER/02usr/yaoqiong/Project/gaoshengjie_RRBS/
+  944  ll /ifs4/BC_CANCER/02usr/yaoqiong/Project/gaoshengjie_RRBS/
+  945  ll /ifs4/BC_CANCER/02usr/yaoqiong/Project/gaoshengjie_RRBS/
+  946  ll /ifs4/BC_CANCER/02usr/yaoqiong/Project/gaoshengjie_RRBS/
+  947  ll
+  948  ll
+  949  ll
+  950  ll
+  951  ll
+  952  qme
+  953  ll
+  954  qme
+  955  ll
+  956  l
+  957  ll
+  958  qme
+  959  ll
+  960  ll
+  961  ll
+  962  l
+  963  ll
+  964  ll
+  965  cd ..
+  966  ll
+  967  cd ..
+  968  ll
+  969  cd WTS/
+  970  ll
+  971  ll
+  972  cd transcript
+  973  ll
+  974  cd Upload/
+  975  ll
+  976  cd AdvancedAnalysis/
+  977  ll
+  978  cd GeneDiffExp/
+  979  ll
+  980  cd ../../../../transcriptome/
+  981  ll
+  982  ll ..
+  983  cd transcriptome
+  984  cd transcriptome
+  985  ll
+  986  cd Upload
+  987  ll
+  988  cd AdvancedAnalysis/GeneDiffExp/
+  989  ll
+  990  les Trans_normal-VS-Trans_block.GeneDiffExpFilter.xls
+  991  ll
+  992  ll
+  993  ll
+  994  ll
+  995  ll
+  996  ll
+  997  ll
+  998  ll
+  999  Rscript 
+ 1000  ll
+ 1001  ll
+ 1002  cd /nas/RD_12A/gaoshengjie/Database/Human/RRBS/bin/Advance/
+ 1003  ll
+ 1004  ll
+ 1005  topme
+ 1006  ll
+ 1007  perl getdmr.pl 
+ 1008  perl getdmr.pl ../makeout/Norm/overlap/all/chr12.CDS.overlap ../makeout/Norm/overlap/all/chr12.CDS.overlap 
+ 1009  les ../makeout/Norm/overlap/all/chr12.CDS.overlap
+ 1010  les getdmr.pl
+ 1011  les ../makeout/Norm/overlap/all/chr12.CDS.overlap
+ 1012  les getdmr.pl
+ 1013  vi getdmr.pl
+ 1014  perl getdmr.pl ../makeout/Norm/overlap/all/chr12.CDS.overlap ../makeout/Norm/overlap/all/chr12.CDS.overlap 
+ 1015  vi getdmr.pl
+ 1016  perl getdmr.pl ../makeout/Norm/overlap/all/chr12.CDS.overlap ../makeout/Norm/overlap/all/chr12.CDS.overlap 
+ 1017  vi getdmr.pl
+ 1018  perl getdmr.pl ../makeout/Norm/overlap/all/chr12.CDS.overlap ../makeout/Norm/overlap/all/chr12.CDS.overlap 
+ 1019  vi getdmr.pl
+ 1020  perl getdmr.pl ../makeout/Norm/overlap/all/chr12.CDS.overlap ../makeout/Norm/overlap/all/chr12.CDS.overlap 
+ 1021  vi getdmr.pl
+ 1022  perl getdmr.pl ../makeout/Norm/overlap/all/chr12.CDS.overlap ../makeout/Norm/overlap/all/chr12.CDS.overlap 
+ 1023  vi getdmr.pl
+ 1024  perl getdmr.pl ../makeout/Norm/overlap/all/chr12.CDS.overlap ../makeout/Norm/overlap/all/chr12.CDS.overlap 
+ 1025  les ../makeout/Norm/overlap/all/chr12.CDS.overlap
+ 1026  ll
+ 1027  vi getdmr.pl 
+ 1028  perl getdmr.pl ../makeout/Norm/overlap/all/chr12.CDS.overlap ../makeout/Norm/overlap/all/chr12.CDS.overlap 
+ 1029  vi getdmr.pl 
+ 1030  les ../makeout/Norm/overlap/all/chr12.CDS.overlap
+ 1031  awk '$7+$8>0' ../makeout/Norm/overlap/all/chr12.CDS.overlap
+ 1032  awk '$7+$8>0' ../makeout/Norm/overlap/all/chr1.CDS.overlap
+ 1033  awk '$7+$8>0' ../makeout/Norm/overlap/all/chr1.Upstream2k.overlap 
+ 1034  awk '$7+$8>0' ../makeout/Norm/overlap/all/chr2.Upstream2k.overlap 
+ 1035  perl getdmr.pl ../makeout/Norm/overlap/all/chr2.Upstream2k.overlap ../makeout/Norm/overlap/all/chr2.Upstream2k.overlap
+ 1036  history >histo
