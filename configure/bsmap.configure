@@ -1,0 +1,55 @@
+####################################  config file of RRBS_Kit pipeline ###################################
+################################################  V1.0  ##################################################
+########################## CONTACT: Shengjie Gao (gaoshengjie@genomics.org.cn) ###########################
+############################# Just change the text behind '=', not anything else #########################
+########################## All lines prefixed by '#' will be considered as comments ######################
+############################# All contexts follows '=' are blank separated ###############################
+
+######################################
+##########     Variables   ###########
+######################################
+#Reion, blank separated
+Region = 40 220
+#SGE switch : 0 - without SGE; 1 - with SGE
+SGEsel = 1
+#Breakpoint switch : 0 - without Breakpoint; 1 - with Breakpoint
+BPTsel = 1
+#Thread num for bowtie2
+THREADnum = 16
+#qsub command arguments "-p" (project)
+Project = HUMcccR
+#qsub command arguments "-q" (queue)
+Queue = bc.q
+
+######################################
+######    External Softwares   #######
+######################################
+# Software for alignment. bowtie2 / bsmap
+Alignsoft = bsmap -z 64 -p 12 -s 12 -v 10 -q 2
+#Alignsoft = bismark -q --phred64-quals --bowtie2 -p 4 
+# Absolute full path for java and R
+Javasoft = /usr/java/latest/bin/java
+Rscript = /nas/RD_12A/gaoshengjie/software/R-3.0.0/bin/R
+######################################
+#########    Sample files   ##########
+######################################
+# Sample directory
+SplDir = ./data/sample
+# Adapter file name
+Adapter = adapter.fa
+# Sample follows '=' are blank separated
+# name of tissue, Normal or Tumour, SE or PE, name of library, name of FlowCell, file name of read1, file name of read2, platform, target region.
+
+
+Sample = K1 Normal	PE HUMkfoHABDDAAPEI-8 FCC076MACXX_L1 111212_I251_FCC076MACXX_L1_HUMkfoHABDDAAPEI-8_1.fq.gz 111212_I251_FCC076MACXX_L1_HUMkfoHABDDAAPEI-8_2.fq.gz illumina 0 340 
+Sample = K1 Normal PE HUMkfoHABDDAAPEI-8 FCC076MACXX_L8 110807_I260_FCC01P5ACXX_L8_HUMkfoHABDDAAPEI-8_1.fq.gz 110807_I260_FCC01P5ACXX_L8_HUMkfoHABDDAAPEI-8_2.fq.gz  illumina 0 340
+Sample = K1 Normal PE HUMkfoHABDEAAPEI-12_1 FCC01P5ACXX_L8 110807_I260_FCC01P5ACXX_L8_HUMkfoHABDEAAPEI-12_1.fq.gz 110807_I260_FCC01P5ACXX_L8_HUMkfoHABDEAAPEI-12_2.fq.gz illumina 0 340 
+Sample = K1 pRCC PE HUMkfoHAADDBAPEI-4 FCC076MACXX_L1 111212_I251_FCC076MACXX_L1_HUMkfoHAADDBAPEI-4_1.fq.gz 111212_I251_FCC076MACXX_L1_HUMkfoHAADDBAPEI-4_2.fq.gz illumina 0 340
+Sample = K1 pRCC PE HUMkfoHAADDBAPEI-4 FCB01Y3ACXX_L8 110817_I266_FCB01Y3ACXX_L8_HUMkfoHAADDBAPEI-4_1.fq.gz 110817_I266_FCB01Y3ACXX_L8_HUMkfoHAADDBAPEI-4_2.fq.gz illumina 0 340
+Sample = K1 pRCC PE HUMkfoHAADEBAPEI-5 FCB01Y3ACXX_L8 110817_I266_FCB01Y3ACXX_L8_HUMkfoHAADEBAPEI-5_1.fq.gz 110817_I266_FCB01Y3ACXX_L8_HUMkfoHAADEBAPEI-5_2.fq.gz illumina 0 340
+Sample = K1 MVC PE HUMkfoHACDDAAPEI-1 FCB01Y3ACXX_L8 110817_I266_FCB01Y3ACXX_L8_HUMkfoHACDDAAPEI-1_1.fq.gz 110817_I266_FCB01Y3ACXX_L8_HUMkfoHACDDAAPEI-1_2.fq.gz illumina 0 340
+Sample = K1 MVC PE HUMkfoHACDDAAPEI-1 FCC076MACXX_L1 111212_I251_FCC076MACXX_L1_HUMkfoHACDDAAPEI-1_1.fq.gz 111212_I251_FCC076MACXX_L1_HUMkfoHACDDAAPEI-1_2.fq.gz illumina 0 340
+Sample = K1 MVC PE HUMkfoHACDEAAPEI-7 FCB01Y3ACXX_L8 110817_I266_FCB01Y3ACXX_L8_HUMkfoHACDEAAPEI-7_1.fq.gz 110817_I266_FCB01Y3ACXX_L8_HUMkfoHACDEAAPEI-7_2.fq.gz illumina 0 340
+Sample = K1 MB PE HUMkfoHADDDAAPEI-2 FCC076MACXX_L1 111212_I251_FCC076MACXX_L1_HUMkfoHADDDAAPEI-2_1.fq.gz 111212_I251_FCC076MACXX_L1_HUMkfoHADDDAAPEI-2_2.fq.gz illumina 0 340 
+Sample = K1 MB PE HUMkfoHADDEAAPEI-3 FCC01P5ACXX_L8  110807_I260_FCC01P5ACXX_L8_HUMkfoHADDEAAPEI-3_1.fq.gz 110807_I260_FCC01P5ACXX_L8_HUMkfoHADDEAAPEI-3_2.fq.gz illumina 0 340	
+Sample = K1 MB PE HUMkfoHADDDAAPEI-2 FCC01P5ACXX_L8 110807_I260_FCC01P5ACXX_L8_HUMkfoHADDDAAPEI-2_1.fq.gz 110807_I260_FCC01P5ACXX_L8_HUMkfoHADDDAAPEI-2_2.fq.gz illumina 0 340

@@ -1,9 +1,8 @@
 #########################################################
 # Step 1 (Setup softwares)
 #########################################################
-1, Download add-ons packages “SMAP_Addon.tar.gz" from ftp://public.genomics.org.cn/BGI/SMATdigger/ and save it to the root directory of RRBS_Kit. Extract the package with command "tar vxzf SMAP_Addon.tar.gz"
-2, Execute command "chmod +x ./*.sh"
-3, Execute command "./Software_Setup.sh"
+1, Execute command "chmod +x ./*.sh"
+2, Execute command "./Software_Setup.sh"
 
 #########################################################
 # Step 2 (Setup perl modules) 
@@ -18,8 +17,8 @@
 #########################################################
 # Step 3 (Data prepare)
 #########################################################
-1, Download example file package "data.tar.gz" from ftp://public.genomics.org.cn/BGI/SMAPdigger/ and save it to the root directory of RRBS_Kit. Extract the package with command "tar vxzf data.tar.gz"
-2, Put file "hg19.fa" into "./data/common" directory (It could also be downloaded from ftp://public.genomics.org.cn/BGI/SMATdigger/)
+1, Download example file package "data.tar.gz" from ftp://public.genomics.org.cn/BGI/SMAP/ and save it to the root directory of SMAP. Extract the package with command "tar vxzf data.tar.gz"
+2, Put file "hg19.fa" into "./data/common" directory (It could also be downloaded from ftp://public.genomics.org.cn/BGI/SMAT/)
 3, Check if file "hg19.chr_len.bed" is in "./data/common" directory
 4, Check if file "CpGIsland.bed.seq.example" and "Upstream2k.bed.seq.example" are in "./data/element" directory
 5, Check if file adapter file and raw fq files  are in "./data/sample" directory
@@ -29,7 +28,7 @@
 # Step 4 (Configure program) 
 #########################################################
 1, modify configuration file "Eval.configure" 
-2, Execute script "perl ./Monitor.pl -c RRBS_Kit_Eval.configure -o <Output path>"
+2, Execute script "perl ./Monitor.pl -c Eval.configure -o <Output path>"
 
 #########################################################
 # Step 5 (Run program) 
