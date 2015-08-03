@@ -16,9 +16,9 @@
 ### If your can get access to administrator mode (Strongly recommanded)
 1, Execute command "./Module_Setup.sh"
 ## Step 3 (Data prepare)
-1, Download example file package "data.tar.gz" from ftp://public.genomics.org.cn/BGI/SMAP/ and save it to the root directory of SMAP. Extract the package with command "tar vxzf data.tar.gz"
+1, Download example file package "data.tar.gz" from http://gigadb.org/dataset/100143 and save it to the root directory of SMAP. Extract the package with command "tar vxzf data.tar.gz"
 
-2, Put file "hg19.fa" into "./data/common" directory (It could also be downloaded from ftp://public.genomics.org.cn/BGI/SMAT/)
+2, Put file "hg19.fa" into "./data/common" directory (It could also be downloaded from http://gigadb.org/dataset/100143)
 
 3, Check if file "hg19.chr_len.bed" is in "./data/common" directory
 
