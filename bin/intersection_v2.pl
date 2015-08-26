@@ -126,7 +126,7 @@ my $rscript = "
 pdf(\"$abs_d_cout/$target_base.pdf\", height=8, width=12)
 par(font.lab=1,font.axis=1,cex.lab=1.9,cex.main=3.5,cex.axis=1.5,mar=c(6,6,4,0.5),mgp=c(3,1,0))
 data<-read.table(\"$abs_d_cout/$target_base.overlap\", head=F)
-b<-t(data[3:7])
+b<-t(data[3:6])
 h<-as.matrix(b)
 barplot(h*100,yaxt=\"n\",ylim=c(0,70),ylab=\"Coverage of Overlaped-CpG(%)\",legend.text = c(\"Theoretical\",\">=1X\",\">=4X\",\">=10X\",\">=20X\"),args.legend = list(cex=1.5),beside = TRUE,col=c(rainbow(7)),axes=T)
 mtext(\"$target_base\",line=2,side=1,adj=0.5)
