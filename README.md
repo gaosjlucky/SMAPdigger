@@ -2,7 +2,7 @@
 
 ## Step 1 (Setup softwares)
 
-1. Execute command "chmod +x ./*.sh"
+1. Execute command "chmod -R 755 ./"
 
 2. Execute command "./Software_Setup.sh"
 
