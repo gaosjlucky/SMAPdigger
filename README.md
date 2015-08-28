@@ -46,7 +46,7 @@ Software requirements
 
 2, Execute script "perl ./Monitor.pl -c Eval.configure -o <Output path>"
 ## Step 5 (Run program) 
-1, cd <Output path> 
+1, cd Output path 
 ### If you want to run all the scripts by one step (Recommanded)
 2, Execute script “./SMAP_Run.sh"
 ### If you want to run each script one by one
