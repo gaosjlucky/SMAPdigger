@@ -3,12 +3,19 @@
 smapDigger works on 64-bit Unix (Linux, Ubuntu, Mac OS, etc) based systems. 
 
 Hardware requirements
+
 	At least one computing node equipped with at least 10 GB Memory
+	
 Software requirements
+
 	GCC 4.6.0 or higher
+	
 	Perl 5.16.3 or higher
+	
 	Java 1.6.0 or higher
+	
 	zlib 1.2.8 or higher
+	
 
 
 ## Step 1 (Setup softwares)
