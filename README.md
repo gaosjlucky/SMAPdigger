@@ -22,7 +22,7 @@ Software requirements
 
 ## Step 2 (Setup perl modules) 
 ### If your cannot get access to administrator mode (Not recommanded)
-1, Execute command "./Module_Setup.sh modules" in user mode
+1, Execute command "./Module_Setup.sh [Perl module path (Absolute Full Path)]" in user mode
 
 2, Add the path of your perl module to environmental variable $PARL5LIB in file ~/.bashrc. For most linux system, it is usually something like "export PERL5LIB=$PERL5LIB:<Perl module path>/share/perl5/:<Perl module path>/lib64/perl5/".
 
