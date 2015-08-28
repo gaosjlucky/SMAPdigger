@@ -1,4 +1,5 @@
-chmod +x ./*.sh
-./Software_Setup.sh
-./Module_Setup.sh SMAPpath/modules/
+cd SMAPdigger
 chmod -R 755 ./
+./Software_Setup.sh
+./Module_Setup.sh modules/
+
