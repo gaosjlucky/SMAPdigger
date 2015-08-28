@@ -9,14 +9,10 @@ Hardware requirements
 Software requirements
 
 	GCC 4.6.0 or higher
-	
 	Perl 5.16.3 or higher
-	
 	Java 1.6.0 or higher
-	
 	zlib 1.2.8 or higher
 	
-
 
 ## Step 1 (Setup softwares)
 
