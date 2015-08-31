@@ -142,7 +142,7 @@ while(<LIB>){
 		die "Error! Invalid adaptor file!\n" unless($adaptor && -e $adaptor);
 	}
 	
-	if(/Sample/){
+	if(/^Sample/){
 		my @sp=split /\=/;
 		$sp[1]=~s/^\s+//;
 		my @saminfo=split /\s+/,$sp[1];
