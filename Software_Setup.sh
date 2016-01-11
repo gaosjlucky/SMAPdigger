@@ -45,10 +45,37 @@ cd "tools"
 unzip "-o" "-d" "../bin" "picard-tools-1.114.zip"
 cd ".."
 ###############################################
-# BisSNP
+# Bs-snper
 ###############################################
-echo "Install BisSNP..."
-cp "-f" "./tools/BisSNP-0.82.2.jar" "./bin/BisSNP-0.82.2.jar"
+echo "Install Bs-snper"
+cd "tools"
+unzip "-o" "BS-Snper-master.zip"
+cd  "BS-Snper-master"
+chmod "+x" BS-Snper.sh
+./BS-Snper.sh
+cp "-f" "./BS-Snper.pl" "../../bin/"
+cp "-f" "./chrLenExtract" "../../bin/"
+cp "-f" "./rrbsSnp" "../../bin/"
+cd ".."
+cd ".."
+###############################################
+# DMR
+###############################################
+echo "Install dmr"
+cd "tools"
+unzip "-o" "dmr.zip"
+cd "dmr"
+g++ -O2 -o dmr dmr.cpp DivideRange.cpp UnionFile.cpp CoreSearch.cpp cdf.cpp -lm
+cp "-f" "./dmr" "../../bin/"
+cd ".."
+cd ".."
+###############################################
+# Chmod
+###############################################
+cd "bin/FastQC/"
+chmod "+x" "fastqc"
+cd ".."
+cd ".."
 ###############################################
 # clear
 ###############################################
@@ -57,4 +84,6 @@ cd "tools"
 rm "-rf" "samtools-0.1.19"
 rm "-rf" "bsmap-2.74"
 rm "-rf" "bowtie2-2.2.2"
+rm "-rf" "dmr"
+rm "-rf" "Bs-snper"
 echo "Complete."

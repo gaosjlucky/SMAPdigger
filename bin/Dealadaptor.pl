@@ -36,9 +36,9 @@ use Data::Dumper;
 use File::Basename qw(basename dirname);
 use File::Path;
 use FindBin '$Bin';
-use lib "$Bin/lib/compress";
-use Compress::Raw::Zlib;
-use Compress::Zlib;
+#use lib "$Bin/lib/compress";
+#use Compress::Raw::Zlib;
+#use Compress::Zlib;
 use Getopt::Long;
 
 my %hash;
@@ -104,13 +104,14 @@ if($read2=~/\.gz$/){
 }else{
 	open (RD2,$read2)||die "no read2\n";
 }
-#open (CLN1,">$clean1") || die "can not creat clean1\n";
-#open (CLN2,">$clean2") || die "cant creat clean2\n";
+open (CLN1,">$clean1") || die "can not creat clean1\n";
+open (CLN2,">$clean2") || die "cant creat clean2\n";
 #$fq1gz = gzopen("$pathname\_1.fq.gz","rb") or die "ERROR: cann't ungzip fq: $!";
 #$fq2gz = gzopen("$pathname\_2.fq.gz","rb") or die "ERROR: cann't ungzip fq: $!";
 
-my $clean1gz = gzopen("$clean1","wb") or die $!;
-my $clean2gz = gzopen("$clean2","wb") or die $!;
+#my $clean1gz = gzopen("$clean1","wb") or die $!;
+#my $clean2gz = gzopen("$clean2","wb") or die $!;
+
 
 
 while(<RD1>){
@@ -231,18 +232,21 @@ while(<RD1>){
 	if($location1==0){
 		#print CLN1 "$read1name\n$seq1\n$sym1\n$qual1\n";
 		my $read1="$read1name\n$seq1\n$sym1\n$qual1\n";
-		$clean1gz->gzwrite($read1) || die $!;
+		#$clean1gz->gzwrite($read1) || die $!;
+		print CLN1 $read1 || die $!;
 		$cleanbase+=length($seq1);
 	}elsif($startlen1>=31){
 		my $read1="$read1name\n$startbase1\n$sym1\n$startqual1\n";
 		#print CLN1 "$read1name\n$startbase1\n$sym1\n$startqual1\n";
-		$clean1gz->gzwrite($read1) || die $!;
+		#$clean1gz->gzwrite($read1) || die $!;
+		print CLN1 $read1 || die $!;
 		$cleanbase+=length($startbase1);
 		#print "$read1name\t$pos1[0]\t$adplen1\n";#start from 0
 	}elsif($startlen1<31){
 		#print CLN1 "$read1name\n$endbase1\n$sym1\n$endqual1\n";
 		my $read1="$read1name\n$endbase1\n$sym1\n$endqual1\n";
-		$clean1gz->gzwrite($read1) || die $!;
+		#$clean1gz->gzwrite($read1) || die $!;
+		print CLN1 $read1 || die $!;
 		$cleanbase+=length($endbase1);
 		#print "$read1name\t$pos1[0]\t$adplen1\n";#start fron 0
 	}
@@ -250,18 +254,21 @@ while(<RD1>){
 	if($location2==0){
 		#print CLN2 "$read2name\n$seq2\n$sym2\n$qual2\n";
 		my $read2="$read2name\n$seq2\n$sym2\n$qual2\n";
-		$clean2gz->gzwrite($read2) || die $!;
+		#$clean2gz->gzwrite($read2) || die $!;
+		print CLN2 $read2 || die $!;
 		$cleanbase+=length($seq2);
 	}elsif($startlen2>=31){
                 #print CLN2 "$read2name\n$startbase2\n$sym1\n$startqual2\n";
 		my $read2="$read2name\n$startbase2\n$sym1\n$startqual2\n";
-		$clean2gz->gzwrite($read2) || die $!;		
+		#$clean2gz->gzwrite($read2) || die $!;		
+		print CLN2 $read2 || die $!;
 		$cleanbase+=length($startbase2);
 		#print "$read2name\t$pos2[0]\t$adplen2\n";
         }elsif($startlen2<31){
                 #print CLN2 "$read2name\n$endbase2\n$sym2\n$endqual2\n";
 		my $read2="$read2name\n$endbase2\n$sym2\n$endqual2\n";
-		$clean2gz->gzwrite($read2) || die $!;
+		#$clean2gz->gzwrite($read2) || die $!;
+		print CLN2 $read2 || die $!;
 		$cleanbase+=length($endbase2);
 		#print "$read2name\t$pos2[0]\t$adplen2\n";
 
@@ -309,7 +316,7 @@ if($read1=~/\.gz$/){
 }else{
         open (RD1,$read1)||die "no read1\n";
 }
-my $clean1gz = gzopen("$clean1","wb") or die $!;
+#my $clean1gz = gzopen("$clean1","wb") or die $!;
 while(<RD1>){
         chomp;
 	$totalread++;
@@ -372,15 +379,18 @@ while(<RD1>){
 	
 	if($location1==0){
                 my $read1="$read1name\n$seq1\n$sym1\n$qual1\n";
-                $clean1gz->gzwrite($read1) || die $!;
+                #$clean1gz->gzwrite($read1) || die $!;
+		print CLN1 $read1 || die $!;
 		$cleanbase+=length($seq1);
         }elsif($startlen1>=31){
                 my $read1="$read1name\n$startbase1\n$sym1\n$startqual1\n";
-                $clean1gz->gzwrite($read1) || die $!;
+                #$clean1gz->gzwrite($read1) || die $!;
+		print CLN1 $read1 || die $!;
 		$cleanbase+=length($startbase1);
         }elsif($startlen1<31){
                 my $read1="$read1name\n$endbase1\n$sym1\n$endqual1\n";
-                $clean1gz->gzwrite($read1) || die $!;
+                #$clean1gz->gzwrite($read1) || die $!;
+		print CLN1 $read1 || die $!;
 		$cleanbase+=length($startbase1);
         }
 }

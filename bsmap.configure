@@ -1,0 +1,52 @@
+####################################  config file of RRBS_Kit pipeline ###################################
+################################################  V1.0  ##################################################
+########################## CONTACT: Shengjie Gao (gaoshengjie@genomics.org.cn) ###########################
+############################# Just change the text behind '=', not anything else #########################
+########################## All lines prefixed by '#' will be considered as comments ######################
+############################# All contexts follows '=' are blank separated ###############################
+
+######################################
+##########     Variables   ###########
+######################################
+#Working mode : multicore, sge, slurm
+Mode = slurm
+#Breakpoint switch : on, off
+Bpt = off
+#Sge queue (qsub command arguments "-q")
+SgeQueue = bc.q
+#Sge project (qsub command arguments "-p")
+SgeProj = HUMcccR
+#Slurm partition (sbatch command arguments "-p")
+SlurmPart = test
+
+######################################
+######    External Softwares   #######
+######################################
+# Software for alignment. bowtie2 / bsmap
+Alignsoft = bsmap -z 64 -p 12 -s 12 -v 10 -q 2 -m 0 -x 800
+# Absolute full path for java and R
+Javasoft = /usr/bin/java
+Rscript = /vol6/home/zoudan/software/R/bin/R
+
+######################################
+##########    Data files   ###########
+######################################
+# Reference
+Reference = /vol6/home/zoudan/eval/SMAP/SMAPdigger-master-slurm/data/common/hg19.fa
+# Anno dir
+Annodir = ./data/element/
+# Adapter file name
+Adapter = ./data/sample/adapter.fa
+# Region
+Region = ./data/common/sRRBS_40-300_region.bed
+# Target
+Target = ./data/common/Target.number
+
+######################################
+#########    Sample files   ##########
+######################################
+# Sample follows '=' are blank separated
+# Name of tissue, Normal or Tumour, SE or PE, name of library, name of FlowCell, file name of read1, file name of read2, platform, target region.
+Sample = K1 Normal PE HUMkfoHABDDAAPEI-8 FCC076MACXX_L1 ./data/sample/pe50normal.1.fq ./data/sample/pe50normal.2.fq illumina 
+Sample = K1 MVC PE HUMkfoHADDDAAPEI-2 FCC076MACXX_L1 ./data/sample/pe50tumor.1.fq ./data/sample/pe50tumor.2.fq illumina  
+

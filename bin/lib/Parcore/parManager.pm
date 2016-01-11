@@ -24,33 +24,27 @@ sub parmanager {
 	# {{
 	my %arg_hash;
 	&parmanager_arg(\%arg_hash, @_);
-	# -s: script file
-	# -o: output directory
-	# -m: memory required
-	# -d: disk required
-	# -t: check interval
-	# -w: with/without sge
-	# -b: breakpoint off/on
-	# -c: cpu core number
-	# -q: sge queue
-	# -p: sge project
-	# Common arg
-	my $shScript = $arg_hash{'s'};		# shell script
-	my $outputDir = $arg_hash{'o'};		# output directory
-	my $memSpace = $arg_hash{'m'};		# memory requirement
-	my $diskSpace = $arg_hash{'d'};		# disk requirement
-	my $chkInterval = $arg_hash{'t'};	# check interval (resource & state check)
+	#################################
+	# sbatch -p test -N 1 --output=/xxx/test.log -D /xxx/ /xxx/test.sh
+	# -x: slurm partition (-p)
 	# Switch
-	my $withSge = $arg_hash{'w'};		# 0: without SGE, 1: with SGE
-	my $withBpt = $arg_hash{'b'};		# 0: without breakpoint, 1: with breakpoint
-	# For multi-core env	
-	my $threadNum = $arg_hash{'c'};		# max process number
-	# For sge env
-	my $queueName = $arg_hash{'q'};		# sge queue name
-	my $projectName = $arg_hash{'p'};	# sge project name
-	####################
-	if(!(-e $outputDir)) {
-		system("mkdir -p $outputDir");
+	my $mode 		= 	$arg_hash{'mode'};		# multicore, sge, slurm
+	my $bpt 		= 	$arg_hash{'bpt'};		# on: without breakpoint, off: with breakpoint
+	# Basic arg
+	my $shell		= 	$arg_hash{'shell'};		# shell script
+	my $outdir   	= 	$arg_hash{'outdir'};	# output directory
+	my $memsz 		= 	$arg_hash{'memsz'};		# memory size requirement
+	my $disksz 		= 	$arg_hash{'disksz'};	# disk size requirement
+	my $chkint 		= 	$arg_hash{'chkint'};	# check interval (resource & state check)
+	my $nthread 	= 	$arg_hash{'nthread'};	# thread number
+	# For sge mode
+	my $sgequeue 	= 	$arg_hash{'sgequeue'};	# sge queue
+	my $sgeproj 	= 	$arg_hash{'sgeproj'};	# sge project
+	# For slurm env
+	my $slurmpart 	= 	$arg_hash{'slurmpart'};	# slurm parition
+	#################################
+	if(!(-e $outdir)) {
+		system("mkdir -p $outdir");
 	}
 	# }}
 	
@@ -59,12 +53,20 @@ sub parmanager {
 	####################################################################
 	# {{
 	my ($FIA,$FOA,$bufA,$errFile);
-	my $shPath = dirname $shScript;
+	my $shPath = dirname $shell;
 	# Execute state shell & log 
-	system("mkdir -p $shScript.tmp");
+	my $logDir = "$shell.tmp";
+	# Clear history record
+	if($bpt eq 'off') {
+		system("rm -rf $logDir");
+	}
+	# Make new log directory
+	if(!(-d $logDir)) {
+		system("mkdir -p $logDir");
+	}
 	# Command split
 	my @cmd;
-	open (SHS,"<$shScript") || die "fail $shScript: $!\n";
+	open (SHS,"<$shell") || die "fail $shell: $!\n";
 	while(<SHS>){
 		# Each lines in the shell script could be parallelly executed
 		next if(/^\s+$/ || /^\#/);
@@ -83,10 +85,10 @@ sub parmanager {
 		$shCmdFin[$i] = 0;
 	}
 	# Re-check
-	if($withBpt == 1) {
+	if($bpt eq 'on') {
 		for(my $i = 0; $i < $shCmdCnt; $i++) {
 			# Check execute log
-			$errFile = "$shScript.tmp/step$i.sh.z.log";
+			$errFile = "$logDir/step$i.sh.z.log";
 			if(-e $errFile) {
 				open $FIA,"<$errFile";
 				$bufA = <$FIA>;
@@ -102,11 +104,11 @@ sub parmanager {
 	# Generate script
 	for(my $i = 0; $i < $shCmdCnt; $i++) {	
 		if($shCmdFin[$i] == 0) {
-			$errFile = "$shScript.tmp/step$i.sh.z.log";
-			open $FOA,">$shScript.tmp/step$i.sh";
-			print $FOA "$cmd[$i] && perl -e 'print STDERR \"$shCmdOk\"' >&$errFile";
+			$errFile = "$logDir/step$i.sh.z.log";
+			open $FOA,">$logDir/step$i.sh";
+			print $FOA "#!/bin/sh\n$cmd[$i] && perl -e 'print STDERR \"$shCmdOk\"' >&$errFile";
 			close $FOA;
-			system("chmod +x $shScript.tmp/step$i.sh");
+			system("chmod +x $logDir/step$i.sh");
 		}
 	}
 	# }}
@@ -116,44 +118,61 @@ sub parmanager {
 	####################################################################
 	# {{
 	my ($cmdLine,$diskAvail,$memAvail,$pm,$tag);
-	if($withSge == 0) {
-		$pm = new Parallel::ForkManager($threadNum);
+	if($mode eq 'multicore') {
+		$pm = new Parallel::ForkManager($nthread);
 	}
 	for(my $i = 0; $i < $shCmdCnt; $i++) {
 		if($shCmdFin[$i] == 1) {
 			next;
 		}
 		###############################
-		# Resource check
+		# Check disk resources
 		###############################
 		# {{
-		if($withSge == 0) {
-			for(my $j = 0; $j < 20; $j++) {
+		for(my $j = 0; $j < 30; $j++) {
+			$tag = 0;
+			$diskAvail = &chk_disk($outdir,0);
+			if(&compare_space($diskAvail, $disksz) eq 'NA'){ 
+				print "Not enought disk space for $outdir. $disksz needed, $diskAvail available.\n";
+				print "Retry in $chkint seconds.";
+				sleep($chkint);
+				next;
+			}
+			else {
 				$tag = 1;
-				$diskAvail = &chk_disk($outputDir,0);
-				if(&compare_space($diskAvail,$diskSpace) eq 'NA'){ 
-					print "Not enought disk space for $outputDir. $diskSpace needed, $diskAvail available.\n";
-					print "Retry in $chkInterval seconds.";
-					$tag = 2;
-					sleep($chkInterval);
-					next;
-				}
+				last;
+			}
+		}
+		
+		if($tag == 0) {
+			die "Not enought disk space for $outdir. $disksz needed, $diskAvail available. Exit.\n";
+		}
+		# }}
+		
+		###############################
+		# Check local memory resources
+		# For multicore mode only
+		###############################
+		# {{
+		if($mode eq 'multicore') {
+			for(my $j = 0; $j < 30; $j++) {
+				$tag = 0;
 				$memAvail = &chk_mem(0);
 				$memAvail .= 'K';
-				if(&compare_space($memAvail,$memSpace) eq 'NA'){ 
-					print "Not enought memory space. $memSpace needed, $memAvail available.\n";
-					print "Retry in $chkInterval seconds.";
-					$tag = 3;
-					sleep($chkInterval);
+				if(&compare_space($memAvail, $memsz) eq 'NA'){ 
+					print "Not enought memory space. $memsz needed, $memAvail available.\n";
+					print "Retry in $chkint seconds.";
+					sleep($chkint);
 					next;
+				}
+				else {
+					$tag = 1;
+					last;
 				}
 			}
 			
-			if($tag == 2) {
-				die "Not enought disk space for $outputDir. $diskSpace needed, $diskAvail available. Exit.\n";
-			}	
-			elsif($tag == 3) {
-				die "Not enought memory space. $memSpace needed, $memAvail available. Exit.\n";
+			if($tag == 0) {
+				die "Not enought memory space. $memsz needed, $memAvail available. Exit.\n";
 			}
 		}
 		# }}
@@ -162,9 +181,9 @@ sub parmanager {
 		# Work dispatch
 		###############################
 		# {{
-		if($withSge == 0) {
-			# Load from script file
-			open $FIA,"<$shScript.tmp/step$i.sh";
+		if($mode eq 'multicore') {
+			# Load commands from script file
+			open $FIA,"<$logDir/step$i.sh";
 			$cmdLine = <$FIA>;
 			chomp($cmdLine);
 			close $FIA;
@@ -173,8 +192,20 @@ sub parmanager {
 			system("$cmdLine");
 			$pm->finish;
 		}
-		else {
-			system("qsub -o $shScript.tmp -e $shScript.tmp -q $queueName -P $projectName -l vf=$memSpace $shScript.tmp/step$i.sh");
+		elsif($mode eq 'sge') {
+			# Submit task on SGE 
+			my $SGELOG;
+			open $SGELOG,">$logDir/step$i.log";
+			print $SGELOG "qsub -o $logDir -e $logDir -q $sgequeue -P $sgeproj -l vf=$memsz $logDir/step$i.sh";
+			close $SGELOG;
+			system("qsub -o $logDir -e $logDir -q $sgequeue -P $sgeproj -l vf=$memsz $logDir/step$i.sh");
+		}
+		elsif($mode eq 'slurm') {
+			# Convert mem size to MB
+			my $slurmMem = &transform_space($memsz);
+			$slurmMem = $slurmMem * 1024;	
+			# Submit task on SLURM
+			system("sbatch -p $slurmpart -N 1 --mem=$slurmMem -D $logDir $logDir/step$i.sh");
 		}
 		# }}
 	}
@@ -183,15 +214,18 @@ sub parmanager {
 	# Work collection
 	####################################################################
 	# {{
-	if($withSge == 0) {
+	my $totalSec = 0;
+	if($mode eq 'multicore') {
+		# For multicore mode
 		$pm->wait_all_children;
+		sleep(2);
 		for(my $i = 0; $i < $shCmdCnt; $i++) {
 			if($shCmdFin[$i] == 1) {
 				next;
 			}
 			else {
 				# Check execute log
-				$errFile = "$shScript.tmp/step$i.sh.z.log";
+				$errFile = "$logDir/step$i.sh.z.log";
 				if(-e $errFile) {
 					open $FIA,"<$errFile";
 					$bufA = <$FIA>;
@@ -206,14 +240,15 @@ sub parmanager {
 		}
 	}
 	else {
-		while($shCmdLeft > 0) {
+		# For sge and slurm mode
+		while($shCmdLeft > 0 && $totalSec <= 90000) {
 			for(my $i = 0; $i < $shCmdCnt; $i++) {
 				if($shCmdFin[$i] == 1) {
 					next;
 				}
 				else {
 					# Check execute log
-					$errFile = "$shScript.tmp/step$i.sh.z.log";
+					$errFile = "$logDir/step$i.sh.z.log";
 					if(-e $errFile) {
 						open $FIA,"<$errFile";
 						$bufA = <$FIA>;
@@ -226,7 +261,8 @@ sub parmanager {
 					}
 				}
 			}
-			sleep($chkInterval);
+			$totalSec = $totalSec + $chkint;
+			sleep($chkint);
 		}
 	}
 	# }}
@@ -337,17 +373,20 @@ sub compare_space{
 #------ transform space based on the unit --------
 sub transform_space{
 	my ($old) = $_[0];
-	my ($num,$unit) = ($old =~ /^([\d\.]+)(.+)?$/);
+	my ($num, $unit) = ($old =~ /^([\d\.]+)(.+)?$/);
 	$unit ||= 'k'; ## default
-	my (%multiple,@multiple);
+	my (%multiple, @multiple);
 	push @multiple,(1024**($_)) for (-2 .. 1);
 	@multiple{qw/T t G g M m K k/} = @multiple[3,3,2,2,1,1,0,0];
+	
 	if(exists($multiple{$unit})){
 		$num *= $multiple{$unit};
 	}
 	else{
 		die "Cannot distinguish the unit $unit from $old!\n";
 	}
+	
+	# Convert to size with GB unit
 	return $num;
 }
 

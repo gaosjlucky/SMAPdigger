@@ -29,7 +29,7 @@ for(index in 1:len){
 		if ((alt_avg != 0 && abs(ref_avg - alt_avg) / alt_avg >= 0.1) || (ref_avg !=0 && abs(ref_avg - alt_avg) / ref_avg >= 0.1)){
 #			print("\n")
 			p_value = chisq.test(matrix(tmp, ncol=2))$p.value;
-			if (p_value < 0.05){
+			if (p_value < 0.01){
 				cat(as.character(data[index,1]),as.character(data[index,2]),as.character(data[index,3]),as.character(data[index,4]),tmp,p_value,"\n",file=args[2],append=T,sep="\t");
 			}
 		}

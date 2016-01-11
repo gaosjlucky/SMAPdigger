@@ -1,7 +1,6 @@
 #author:gaoshengjie
 #modify in 2013/1/30
 #modify2 in 2013/12/05
-#modify3 in 2015/01/14
 #email: gaoshengjie@genomics.cn
 
 use strict;
@@ -25,12 +24,18 @@ my %snp_cpg;
 my %snppos;
 my @tmp;
 #chr1    846338  .       A       G,X     140     .       DP=65
+#chr17   30476   .       G       A       500     PASS    AG	0.171 
 
 my $rep;my $threebase;
 while(<SNP>){
 	chomp;
 	my @a=split;
+	next if($a[5]<30);
+	next unless($a[6] eq "PASS");
+	next if($a[8]>0.85);
+	next if($a[8]<0.2);
 	$a[4]=~s/\,X//g;
+	#print "$_\n";
 	my @basetype=split /\,/,$a[4];
 	if(@basetype>2){
 		$threebase++;
@@ -73,7 +78,7 @@ while(<BAM>){
 	chomp;
 	my @bamline=split;
 	next if($bamline[4]<30);
-    	$mapnumread++;
+    $mapnumread++;
 	my $lenth=length($bamline[9]);
 	my $end=$bamline[3]+$lenth-1;
 	foreach my $pos($bamline[3]..$end){
@@ -82,176 +87,198 @@ while(<BAM>){
                         my $snp_basepos=$pos-$bamline[3];
 			my $snpref=$base[0];
                         my $snpbase=substr($bamline[9],$snp_basepos,1);
+			#print "$ref\t$base[0]\t$base[1]\t$base[2]\t$snpbase\n";
+                        #fqbase eq rawref #fqbase eq mutation # fqbase eq G && transfa eq C # fqbaseC && transfa eq G,$base[2] is transref
+			if($base[1] eq "T"){ ##var is T,but this T maybe is C in rawbase,so only use C strand sequence.
+				if($snpref eq "C" && $base[2] eq "T"){# W strand
+					die "W strand does not exists this type\n";
+				}
+				if($snpref eq "C" && $base[2] eq "C"){# C strand
+					#Can't know the basesnp T is real or come from C in W fq read, so only C read can be used;
+					#print STDERR "CrickC\-\>T\t$bamline[2]\t$pos\t$snpref\t$base[2]\t$base[1]\t$snpbase\tC->Tbyminusstrand.so we can't know where the T's haplotype\n";
+					if($snpbase eq "T" && !($bamline[1] & 0x10) && ($bamline[1] & 0x80)){
 
-			if($snpref eq "A"){ #ref is A
-				if($base[1] eq "T"){
-					if($snpbase eq "T"){
 						&GetASM($_,$pos);
 					}
-					if($snpbase eq "A"){
+					if($snpbase eq "T" && $bamline[1] & 0x10 && ($bamline[1] & 0x40)){
+						&GetASM($_,$pos);
+					}
+					if($snpbase eq "C" ){
 						&RefASM($_,$pos);
+
 					}	
 				}
-				if($base[1] eq "C"){
+				if($snpref eq "A"){
+					if($snpbase eq "A"){
+					  #print STDERR "WorCRefA\t$bamline[2]\t$pos\tA\tA\tA\tA\trefA\n";
+					  &RefASM($_,$pos);
+					}
+					if($snpbase eq "T"){
+					 #print STDERR "WorCA>T\t$bamline[2]\t$pos\tA\t$base[2]\t$base[1]\t$snpbase\tSNPA>T\n";
+                                          &GetASM($_,$pos);
+					}			
+					
+				}
+				if($snpref eq "G" && $base[2] eq "G"){ #W strand
+					#print STDERR "WstrandG>T\t$bamline[2]\t$pos\t$snpref\t$base[2]\t$base[1]\t$snpbase\tSNPG>T\n";
+					if($snpbase eq "G"){
+						&RefASM($_,$pos);
+					}
+					if($snpbase eq "T"){
+						&GetASM($_,$pos);
+	
+					}		
+				}
+				if($snpref eq "G" && $base[2] eq "A" ){ #C strand
+					#print STDERR "CstrandG>T\t$bamline[2]\t$pos\t$snpref\t$base[2]\t$base[1]\t$snpbase\tSNPG>T\n";
+					if($snpbase eq "A"){###Because mapped to C strand, so the transref is A;
+                                                &RefASM($_,$pos);
+                                        }
+                                        if($snpbase eq "T"){    
+                                                &GetASM($_,$pos);  
+                                        }
+				}
+			}
+			if($base[1] eq "A"){#var is A, but this A maybe is G.
+				if($snpref eq "G" && $base[2] eq "A"){# C strand
+                                 #if($snpbase eq "T" && ($bamline[1] &0x10) ){#### W strand
+                                      die "C strand does not exists this type\n";
+                                 #}
+                                }elsif($snpref eq "G" && $base[2] eq "G"){# W strand, W strand fqs are only used.
+                                        #Can't know the basesnp A is real or come from G;
+                                       # print STDERR "W G>A\t$bamline[2]\t$pos\t$snpref\t$base[2]\t$base[1]\t$snpbase\tG->Abyminusstrand.so we can't know where the T's haplotype\n";
+                                        #next;
+					if($snpbase eq "A" && !($bamline[1] & 0x10) && ($bamline[1] & 0x40)){
+
+                                                &GetASM($_,$pos);
+                                        }
+                                        if($snpbase eq "A" && ($bamline[1] & 0x10) && ($bamline[1] & 0x80)){
+                                                &GetASM($_,$pos);
+                                        }
+                                        if($snpbase eq "G" ){
+                                                &RefASM($_,$pos);
+
+                                        }
+	
+					
+					
+                                }elsif($snpref eq "T"){
+                                        if($snpbase eq "T"){
+                                         # print STDERR "WorCRefT\t$bamline[2]\t$pos\tT\tT\tT\tT\trefT\n";
+                                          &RefASM($_,$pos);
+                                        }
+                                        if($snpbase eq "A"){
+                                         #print STDERR "WorCT>A\t$bamline[2]\t$pos\tA\t$base[2]\t$base[1]\t$snpbase\tSNPT>A\n";
+                                          &GetASM($_,$pos);
+                                        }
+
+                                }elsif($snpref eq "C" && $base[2] eq "C"){ #C strand
+                                        #print STDERR "CstrandC>A\t$bamline[2]\t$pos\t$snpref\t$base[2]\t$base[1]\t$snpbase\tSNPC>A\n";
+                                        if($snpbase eq "C"){
+                                                &RefASM($_,$pos);
+                                        }
+                                        if($snpbase eq "T"){
+                                                &GetASM($_,$pos);
+                                        }
+                                }elsif($snpref eq "C" && $base[2] eq "T" ){ #W strand
+                              #W strand fq1 C->T ; C strand fq1 G->A's reverse complimenary strand, fq2 is G->A strand;
+                                        #print STDERR "W_strandC>A\t$bamline[2]\t$pos\t$snpref\t$base[2]\t$base[1]\t$snpbase\tSNPC>A\n";
+                                        if($snpbase eq "T"){###Because mapped to the W strand, so transref is T 
+                                                &RefASM($_,$pos);
+                                        }
+                                        if($snpbase eq "A"){
+                                                &GetASM($_,$pos);
+                                        }
+                                }
+			}
+			###########var is C
+			if($base[1] eq "C"){
+				if($snpref eq "G" && $base[2] eq "A"){#C strand
 					if($snpbase eq "A"){
 						&RefASM($_,$pos);
 					}
 					if($snpbase eq "C"){
 						&GetASM($_,$pos);
 					}	
-					if($snpbase eq "T" && ($bamline[1] & 0x40) && !($bamline[1] & 0x10) ){##note Watson srand 
-						&GetASM($_,$pos);
-					}
-					if($snpbase eq "T" && ($bamline[1] & 0x80) && ($bamline[1] & 0x10) ){##note Watson srand 
-                                                &GetASM($_,$pos);
-                                        }  	
 				}
-				if($base[1] eq "G"){#watson strand
-					if($snpbase eq "G" && ($bamline[1] & 0x40) && !($bamline[1] & 0x10) ){
-						&GetASM($_,$pos);	
-					}
-					if($snpbase eq "G" && ($bamline[1] & 0x80) && ($bamline[1] & 0x10) ){
-						&GetASM($_,$pos);
-					}
-					if($snpbase eq "A" && ($bamline[1] & 0x40) && !($bamline[1] & 0x10) ){
-                                                &RefASM($_,$pos);    
-                                        }   
-                                        if($snpbase eq "A" && ($bamline[1] & 0x80) && ($bamline[1] & 0x10) ){
-                                                &RefASM($_,$pos);
-                                        }	
-
-				}
-			}
-			
-			if($snpref eq "T"){ #ref is T
-                                if($base[1] eq "A"){
-                                        if($snpbase eq "T"){
-                                                &RefASM($_,$pos);
-                                        }
-                                        if($snpbase eq "A"){
-                                                &GetASM($_,$pos);
-                                        }
-                                }
-                                if($base[1] eq "C"){
-                                        if($snpbase eq "T" && ($bamline[1] & 0x40) && ($bamline[1] & 0x10) ){
-                                                &RefASM($_,$pos);
-                                        }
-                                        if($snpbase eq "C"){
-                                                &GetASM($_,$pos);
-                                        }
-                                        if($snpbase eq "T" && ($bamline[1] & 0x80) && !($bamline[1] & 0x10)){##note Cricksrand 
-                                                &RefASM($_,$pos);
-                                        }
-                                }
-                                if($base[1] eq "G"){#watson strand
-                                        if($snpbase eq "A" && ($bamline[1] & 0x40) && ($bamline[1] & 0x10) ){
-                                                &GetASM($_,$pos);
-                                        }
-                                        if($snpbase eq "A" && ($bamline[1] & 0x80) && !($bamline[1] & 0x10)){
-                                                &GetASM($_,$pos);
-                                        }
-                                        if($snpbase eq "T" && ($bamline[1] & 0x40) && !($bamline[1] & 0x10) ){
-                                                &RefASM($_,$pos);
-                                        }
-                                        if($snpbase eq "G"){
-                                                &GetASM($_,$pos);
-                                        }
-
-                                }
-                        }
-			if($snpref eq "C"){ #ref is C
-                                if($base[1] eq "A"){
-                                        if($snpbase eq "T" && ($bamline[1] & 0x40) && !($bamline[1] & 0x10)){
-                                                &RefASM($_,$pos);
-                                        }
-					if($snpbase eq "T" && ($bamline[1] & 0x80) && ($bamline[1] & 0x10) ){
-                                                &RefASM($_,$pos);
-                                        }
-                                        if($snpbase eq "A"){
-                                                &GetASM($_,$pos);
-                                        }
-                                }
-                                if($base[1] eq "T"){
-                                        if($snpbase eq "T" && ($bamline[1] & 0x40) && ($bamline[1] & 0x10)){
-                                                &GetASM($_,$pos);
-                                        }
-                                        if($snpbase eq "C"){
-                                                &RefASM($_,$pos);
-                                        }
-                                        if($snpbase eq "T" && ($bamline[1] & 0x80) && !($bamline[1] & 0x10)){##note Cricksrand 
-                                                &GetASM($_,$pos);
-                                        }
-                                }
-                                if($base[1] eq "G"){#watson strand
-                                        if($snpbase eq "A" && ($bamline[1] & 0x40) && ($bamline[1] & 0x10) ){
-                                                &GetASM($_,$pos);
-                                        }
-                                        if($snpbase eq "A" && ($bamline[1] & 0x80) && !($bamline[1] & 0x10)){
-                                                &GetASM($_,$pos);
-                                        }
-                                        if($snpbase eq "C"  ){
-                                                &RefASM($_,$pos);
-                                        }
-                                        if($snpbase eq "G"){
-                                                &GetASM($_,$pos);
-                                        }
-					if($snpbase eq "T" && ($bamline[1] & 0x40) && !($bamline[1] & 0x10)){
-						&RefASM($_,$pos);
-					}
-					if($snpbase eq "T" && ($bamline[1] & 0x80) && ($bamline[1] & 0x10) ){
-                                                &RefASM($_,$pos);
-                                        }
-
-                                }
-                        }
-			if($snpref eq "G"){ #ref is G
-                                if($base[1] eq "A"){
-                                        if($snpbase eq "G"){
-                                                &RefASM($_,$pos);
-                                        }
-                                        if($snpbase eq "A" && ($bamline[1] & 0x40) && !($bamline[1] & 0x10)){
-                                                &GetASM($_,$pos);
-                                        }
-					if($snpbase eq "A" && ($bamline[1] & 0x80) && ($bamline[1] & 0x10) ){
-                                                &GetASM($_,$pos);
-                                        }
-                                }
-                                if($base[1] eq "C"){#G>C
-                                        if($snpbase eq "T" && ($bamline[1] & 0x40) && !($bamline[1] & 0x10)){
-                                                &GetASM($_,$pos);
-                                        }
-					if($snpbase eq "T" && ($bamline[1] & 0x80) && ($bamline[1] & 0x10) ){
-                                                &GetASM($_,$pos);
-                                        }
-                                        if($snpbase eq "C"){
-                                                &GetASM($_,$pos);
-                                        }
-                                        if($snpbase eq "A" && ($bamline[1] & 0x80) && !($bamline[1] & 0x10)){##note Cricksrand 
-                                                &RefASM($_,$pos);
-                                        }
-					if($snpbase eq "A" && ($bamline[1] & 0x40) && ($bamline[1] & 0x10)){##note Cricksrand 
-                                                &RefASM($_,$pos);
-                                        }
+				if($snpref eq "G" && $base[2] eq "G"){#W strand
 					if($snpbase eq "G"){
 						&RefASM($_,$pos);
 					}
-                                }
-                                if($base[1] eq "T"){# G>T
-                                        if($snpbase eq "A" && ($bamline[1] & 0x40) && ($bamline[1] & 0x10) ){
+					if($snpbase eq "C"){
+						&GetASM($_,$pos);
+					}	
+				}
+				if($snpref eq "A"){ #no matter which strand
+					if($snpbase eq "A"){
+						&RefASM($_,$pos);
+					}
+					if($snpbase eq "C"){
+						&GetASM($_,$pos);
+					}
+				}
+				if($snpref eq "T"){#no matter which strand
+					if($snpbase eq "T"){
+						&RefASM($_,$pos);
+					}
+					if($snpbase eq "C"){
+						&GetASM($_,$pos);
+					}
+				}	
+			}
+			if($base[1] eq "G"){
+				if($snpref eq "C" && $base[2] eq "T"){ #W strand
+					if($snpbase eq "T"){
+						&RefASM($_,$pos);
+					}	
+					if($snpbase eq "G"){
+						&GetASM($_,$pos);
+					}	
+				}
+				if($snpref eq "C" && $base[2] eq "C"){#C strand
+					if($snpbase eq "C"){
+						&RefASM($_,$pos);
+					}
+					if($snpbase eq "G"){
+						&GetASM($_,$pos);
+					}
+				} 
+				if($snpref eq "A"){#no matter which strand
+					if($snpbase eq "A"){
                                                 &RefASM($_,$pos);
-                                        }
-                                        if($snpbase eq "A" && ($bamline[1] & 0x80) && !($bamline[1] & 0x10)){
-                                                &RefASM($_,$pos);
-                                        }
-                                        if($snpbase eq "T" ){
-                                                &GetASM($_,$pos);
                                         }
                                         if($snpbase eq "G"){
+                                                &GetASM($_,$pos);
+                                        }
+				}
+				if($snpref eq "T"){#no matter which strand
+					if($snpbase eq "T"){
                                                 &RefASM($_,$pos);
                                         }
+                                        if($snpbase eq "G"){
+                                                &GetASM($_,$pos);
+                                        }
+				}
+			}
 
-                                }
-                        }
+=head		
+			else{
+				if($snpbase eq $snpref){
+				 &RefASM($_,$pos);
+				}
+#cout methylation rate for snp strand
+				else{
+			   	 if($snpbase eq $base[1]){
+##include -C->TA; +G->AT; A->CGT; T->ACG because the fq have no G mapped in minus strand  and no C in plus strand; raw fq has same snp with   
+					&GetASM($_,$pos);
+			   	  }				
+			    	 else{
+					print STDERR "other\t$bamline[2]\t$pos\t$snpref\t\t$base[2]\t$base[1]\t$snpbase\n";
+                                	next;	
+			   	 }
+				}
+			}
+=cut
 
 		}		
 	}			
@@ -259,7 +286,6 @@ while(<BAM>){
 close BAM;
 print NUMRD "$mapnumread\n";
 print "SNPpos\tCpGpos\tPosRef\tPosvar\tTransRef\tRefmeth\tRefunmethy\tSNPmeth\tSNPunmethy\n";
-
 foreach my $posinfo(sort keys %hash){
 	my @info=split /\t/,$posinfo;
 	my @snpinfo=split /\_/,$info[0];
@@ -291,8 +317,7 @@ sub RefASM
  my @bamline=split /\s+/,$line;
  my $lenth=length $bamline[9];
  my $refaim=&Substr($bamline[2],$bamline[3],$lenth);
- $refaim = uc($refaim);
-  for (my $i=0;$i<$lenth-2;$i++){
+ for (my $i=0;$i<$lenth-2;$i++){
   my $refcpg=substr($refaim,$i,2);
   if($refcpg eq "CG"){
    my $cpgpos=$bamline[3]+$i;
@@ -300,35 +325,18 @@ sub RefASM
    my $base2cpg=substr($bamline[9],$i+1,1);
    my $cpginfo="$bamline[2]\_$pos\t$cpgpos";
    $hash{$cpginfo}++;
-   if($base1cpg eq "C" && ($bamline[1] & 0x40 && !($bamline[1] & 0x10))){
+   if($base1cpg eq "C"){
     $cpg_ref{$cpginfo}{'Methy'}++;
    }
-
-   if($base1cpg eq "C" && ($bamline[1] & 0x80 && ($bamline[1] & 0x10))) {
-    $cpg_ref{$cpginfo}{'Methy'}++;
-   }   
-
-   if($base2cpg eq "G" && ($bamline[1] & 0x40 && ($bamline[1] & 0x10)) ){
+   if($base2cpg eq "G"){
     $cpg_ref{$cpginfo}{'Methy'}++;
    }
-   if($base2cpg eq "G" && ($bamline[1] & 0x80 && !($bamline[1] & 0x10))){
-    $cpg_ref{$cpginfo}{'Methy'}++;
-   }
-
-   if($base1cpg eq "T" && ($bamline[1] & 0x40 && !($bamline[1] & 0x10))){
-    $cpg_ref{$cpginfo}{'Unmethy'}++;
-   }
-   if($base1cpg eq "T" && ($bamline[1] & 0x80 && ($bamline[1] & 0x10))){
+   if($base1cpg eq "T"){
     $cpg_ref{$cpginfo}{'Unmethy'}++
    }
-
-   if($base2cpg eq "A" && ($bamline[1] & 0x40 && ($bamline[1] & 0x10))){
-     $cpg_ref{$cpginfo}{'Unmethy'}++;
+   if($base2cpg eq "A"){
+     $cpg_ref{$cpginfo}{'Unmethy'}++
    }
-   
-   if($base2cpg eq "A" && ($bamline[1] & 0x80 && !($bamline[1] & 0x10))){
-     $cpg_ref{$cpginfo}{'Unmethy'}++;
-    }
   }
  }
 }
@@ -339,7 +347,6 @@ sub GetASM
  my @bamline=split /\s+/,$line;
  my $lenth=length $bamline[9];
  my $refaim=&Substr($bamline[2],$bamline[3],$lenth);
- $refaim = uc($refaim);
  for (my $i=0;$i<$lenth-2;$i++){
   my $refcpg=substr($refaim,$i,2);
   if($refcpg eq "CG"){
@@ -362,17 +369,17 @@ sub GetASM
     $cpg_snp{$cpginfo}{'Methy'}++;
    }  
    if($base1cpg eq "T" && ($bamline[1] & 0x40 && !($bamline[1] & 0x10))){
-    $cpg_snp{$cpginfo}{'Unmethy'}++;
+    $cpg_snp{$cpginfo}{'Unmethy'}++
    }
    if($base1cpg eq "T" && ($bamline[1] & 0x80 && ($bamline[1] & 0x10))){
-    $cpg_snp{$cpginfo}{'Unmethy'}++;
+    $cpg_snp{$cpginfo}{'Unmethy'}++
    }  
 
    if($base2cpg eq "A" && ($bamline[1] & 0x40 && ($bamline[1] & 0x10))){
-     $cpg_snp{$cpginfo}{'Unmethy'}++;
+     $cpg_snp{$cpginfo}{'Unmethy'}++
    }
    if($base2cpg eq "A" && ($bamline[1] & 0x80 && !($bamline[1] & 0x10))){
-     $cpg_snp{$cpginfo}{'Unmethy'}++;
+     $cpg_snp{$cpginfo}{'Unmethy'}++
    } 
   }
  }
