@@ -29,4 +29,4 @@ Software requirements
 ## Step 3 (Run program) 
 1, cd [Output path] 
 
-sh RRBS_Run.sh
+    sh RRBS_Run.sh
