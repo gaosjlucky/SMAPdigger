@@ -9,7 +9,7 @@
 ##########     Variables   ###########
 ######################################
 #Working mode : multicore, sge, slurm
-Mode = slurm
+Mode = multicore
 #Breakpoint switch : on, off
 Bpt = off
 #Sge queue (qsub command arguments "-q")
@@ -26,16 +26,17 @@ SlurmPart = test
 Alignsoft = bsmap -z 64 -p 12 -s 12 -v 10 -q 2 -m 0 -x 800
 # Absolute full path for java and R
 Javasoft = /usr/bin/java
-Rscript = /vol6/home/zoudan/software/R/bin/R
+Rscript = /usr/bin/R
 
 ######################################
 ##########    Data files   ###########
 ######################################
 # Reference
-Reference = /vol6/home/zoudan/eval/SMAP/SMAPdigger-master-slurm/data/common/hg19.fa
+Reference = /home/hellbelly/reference/hg19/hg19.fa
 # Anno dir
 Annodir = ./data/element/
 # Adapter file name
+# Adapter = NULL
 Adapter = ./data/sample/adapter.fa
 # Region
 Region = ./data/common/sRRBS_40-300_region.bed

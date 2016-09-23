@@ -1,1 +1,0 @@
-./bin/bismark/bismark_genome_preparation --path_to_bowtie /ifshk4/BC_COM_P9/F14HTSECKF1707/DONimoM/software/SMAP_new_20150109/bin  /ifshk7/BC_TUMOR/PROJECT/qbe130308_gaosj_Methylation/software/RRBS_Kit/Database/Hg19/genome/genome/

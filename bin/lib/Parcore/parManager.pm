@@ -106,7 +106,7 @@ sub parmanager {
 		if($shCmdFin[$i] == 0) {
 			$errFile = "$logDir/step$i.sh.z.log";
 			open $FOA,">$logDir/step$i.sh";
-			print $FOA "#!/bin/sh\n$cmd[$i] && perl -e 'print STDERR \"$shCmdOk\"' >&$errFile";
+			print $FOA "#!/bin/sh\n$cmd[$i] && perl -e 'print STDERR \"$shCmdOk\"' 2>$errFile";
 			close $FOA;
 			system("chmod +x $logDir/step$i.sh");
 		}
@@ -184,6 +184,7 @@ sub parmanager {
 		if($mode eq 'multicore') {
 			# Load commands from script file
 			open $FIA,"<$logDir/step$i.sh";
+			$cmdLine = <$FIA>; # Jump over header
 			$cmdLine = <$FIA>;
 			chomp($cmdLine);
 			close $FIA;

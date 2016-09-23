@@ -144,8 +144,10 @@ while(<LIB>){
 		my @tmp=split /\=/;
 		$adaptor=$tmp[1];
 		$adaptor=~s/\s+//g;
-		$adaptor=abs_path($adaptor);
-		die "Error! Invalid adaptor file!\n" unless($adaptor && -e $adaptor);
+		if($adaptor ne "NULL"){
+			$adaptor=abs_path($adaptor);
+			die "Error! Invalid adaptor file!\n" unless($adaptor && -e $adaptor);
+		}
 	}
 
 	if(/^Reference/){
@@ -330,7 +332,14 @@ foreach my $case(keys %sample){
 					
                 if($fq[0]=~/PE/){
 					my $adp=$adaptor;
-					print PRE_AD "perl $Bin/Dealadaptor.pl $adp $fq[1] $fq[2] $outdir/$case/$type/$lib/$flow/t_clean1.fq $outdir/$case/$type/$lib/$flow/a_clean2.fq >$outdir/$case/$type/$lib/$flow/adaptor.info \n";
+					# hellbelly
+					if($adaptor eq "NULL"){
+						print PRE_AD "ln -s $fq[1] $outdir/$case/$type/$lib/$flow/t_clean1.fq\n";
+						print PRE_AD "ln -s $fq[2] $outdir/$case/$type/$lib/$flow/a_clean2.fq\n";
+					}
+					else{
+						print PRE_AD "perl $Bin/Dealadaptor.pl $adp $fq[1] $fq[2] $outdir/$case/$type/$lib/$flow/t_clean1.fq $outdir/$case/$type/$lib/$flow/a_clean2.fq >$outdir/$case/$type/$lib/$flow/adaptor.info \n";
+					}
 					if($alignsoft =~ /bsmap/i){
 						print PRE_BOWT "$alignsoft $alignval -d $rawref  -a $outdir/$case/$type/$lib/$flow/t_clean1.fq  -b $outdir/$case/$type/$lib/$flow/a_clean2.fq |$Bin/samtools view -bS - > $outdir/$case/$type/$lib/$flow/outfile.bam\n";
                         print PRE_Addread "$picardaddread I=$outdir/$case/$type/$lib/$flow/outfile.bam O=$outdir/$case/$type/$lib/$flow/outfileadd.bam  LB=$lib PU=$flow SM=$case\-$type PL=$fq[-1]\n";
@@ -346,8 +355,12 @@ foreach my $case(keys %sample){
 					
 				if($fq[0]=~/SE/){
 					my $adp=$adaptor;
-					print PRE_AD "perl $Bin/Dealadaptor.pl $adp $fq[1]  $outdir/$case/$type/$lib/$flow/t_clean1.fq >$outdir/$case/$type/$lib/$flow/adaptor.info -mode se \n";
-                        
+					if($adaptor eq "NULL"){
+						print PRE_AD "ln -s $fq[1] $outdir/$case/$type/$lib/$flow/t_clean1.fq\n";
+					}
+					else{
+						print PRE_AD "perl $Bin/Dealadaptor.pl $adp $fq[1]  $outdir/$case/$type/$lib/$flow/t_clean1.fq >$outdir/$case/$type/$lib/$flow/adaptor.info -mode se \n";
+                    }    
                     if($alignsoft =~ /bsmap/i){
 					print PRE_BOWT "$alignsoft $alignval -d $rawref  -a $outdir/$case/$type/$lib/$flow/t_clean1.fq |$Bin/samtools view -bS - > $outdir/$case/$type/$lib/$flow/outfile.bam\n";
                         print PRE_Addread "$picardaddread I=$outdir/$case/$type/$lib/$flow/outfile.bam O=$outdir/$case/$type/$lib/$flow/outfileadd.bam  LB=$lib PU=$flow SM=$case\-$type PL=$fq[-1]\n";
