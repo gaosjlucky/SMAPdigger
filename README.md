@@ -1,12 +1,16 @@
 ############################################
 # Important notice
 ############################################
+
 The latest version of SMAPdigger has been moved to
+
 https://github.com/hellbelly/SMAPdigger
+
 Several bugs has been fixed and the architecture has been improved in the latest version.
 
 
 # SMAPdigger
+
 ## System requirement
 smapDigger works on 64-bit Unix (Linux, Ubuntu, Mac OS, etc) based systems. 
 
